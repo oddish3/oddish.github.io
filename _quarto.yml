@@ -5,7 +5,8 @@ navbar:
   left:
     - text: Home
       href: index.qmd
-    - research/index.qmd
+    - text: Research    # Added text field
+      href: research/index.qmd
     - text: Blog
       href: posts/index.qmd
   right:
