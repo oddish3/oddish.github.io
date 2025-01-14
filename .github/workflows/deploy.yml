@@ -1,27 +1,27 @@
-name: Deploy Quarto Website
+name: Quarto Publish
 
 on:
+  workflow_dispatch: # Allows manual triggering
   push:
     branches:
-      - main  # Change to your default branch if different
+      - main  # Triggers the workflow on push to the main branch
 
 jobs:
-  build-and-deploy:
+  build-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Grants permission to push to the repository
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-    - name: Setup Quarto
-      uses: quarto-dev/quarto-actions/setup@v2
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
 
-    - name: Render Quarto site
-      run: quarto render
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site  # Directory containing the rendered site
-
+      - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages  # Specifies the target branch for publishing
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
