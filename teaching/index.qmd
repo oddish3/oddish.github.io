@@ -1,0 +1,6 @@
+---
+title: Teaching
+toc: true
+---
+
+Work in progress

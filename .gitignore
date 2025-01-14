@@ -1,0 +1,22 @@
+.Rproj.user/*
+*.Rproj
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user
+**/cache/
+_site
+.sass-cache
+.jekyll-metadata
+Gemfile.lock
+.bundle/
+vendor/
+.Rproj.user
+*.Renviron
+
+# Quarto scaffolding
+/.quarto/
+/_site/
+
+# knitr and R markdown default cache directories
+**/*/*_cache/

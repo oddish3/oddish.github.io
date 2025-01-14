@@ -1,0 +1,28 @@
+---
+title: "Sol Yates"
+image: IMG_0648.jpg
+about:
+  template: solana #jolla trestles
+  links:
+    - text: "{{< iconify fa6-brands:bluesky >}} BlueSky"
+      href: https://bsky.app/profile/oddish3.github.io
+    - icon: github
+      text: Github
+      href: https://github.com/oddish3
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/sol-yates-20a7961a1
+    # - text: "{{< iconify academicons google-scholar >}} Scholar"
+    #   href: https://scholar.google.com/citations?user=EruWDMwAAAAJ
+    - text: "{{< iconify academicons orcid>}} ORCID"
+      href: https://orcid.org/0009-0004-8754-2108
+    # - icon: envelope
+    #   text: Email
+    #   aria-label: email
+    #   href: "mailto:gmcd@amazon.com"
+
+---
+
+I am a Research Associate at Manchester Centre for Health Economics, University of Manchester, having graduated in 2024.
+
+
