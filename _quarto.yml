@@ -1,23 +1,22 @@
 project:
   type: website
-website:
-  title: "Sol Yates"
-  navbar:
-    left:
-      - text: Home
-        href: index.qmd
-      - research/index.qmd
-      - text: Blog
-        href: posts/index.qmd
-    right:
-      - icon: github
-        href: https://github.com/oddish3
-      - text: "{{< iconify fa6-brands:bluesky >}}"
-        href: https://bsky.app/profile/oddish3.github.io
-  favicon: favicon.ico
-  google-analytics: "UA-76482472-1"
-  # cookie-consent: true
-  open-graph: true
+title: "Sol Yates"
+navbar:
+  left:
+    - text: Home
+      href: index.qmd
+    - research/index.qmd
+    - text: Blog
+      href: posts/index.qmd
+  right:
+    - icon: github
+      href: https://github.com/oddish3
+    - text: "{{< iconify fa6-brands:bluesky >}}"
+      href: https://bsky.app/profile/oddish3.github.io
+favicon: favicon.ico
+google-analytics: "UA-76482472-1"
+# cookie-consent: true
+open-graph: true
 format:
   html:
     theme: cosmo
