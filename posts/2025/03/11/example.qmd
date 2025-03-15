@@ -1,0 +1,16 @@
+---
+title: "Example blog post"
+author:
+- name: Sol Yates
+  orcid: 0009-0004-8754-2108
+date: '2025-03-15'
+---
+
+This is some r code 
+
+
+```{r}
+1 + 1
+```
+
+

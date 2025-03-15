@@ -1,0 +1,8 @@
+README.md
+.gitignore
+.github/
+posts/*/post_files
+.Rproj.user/
+.Rhistory
+.RData
+.DS_Store

@@ -7,4 +7,16 @@ freeze: true
 # Enable banner style title blocks
 title-block-banner: true
 
-author: "Sol Yates"
+# author: "Sol Yates"
+license: "CC BY"
+
+toc: true
+toc-title: Table of contents
+toc-location: left
+
+execute:
+  echo: true
+  message: true
+  warning: true
+
+citation: true

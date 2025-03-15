@@ -1,8 +1,11 @@
 project:
   type: website
+
 website:
   site-url: "https://oddish3.github.io"
   title: "Sol Yates"
+  open-graph: true
+  search: true
   navbar:
     left:
       - text: Home
@@ -24,10 +27,20 @@ website:
         href: https://bsky.app/profile/oddish3.github.io
   favicon: favicon.ico
   google-analytics: "UA-76482472-1"
-  open-graph: true
+blog:
+  # This tells Quarto where to look for blog posts:
+  posts: "posts/*.qmd"
 format:
   html:
-    theme: cosmo
+    comments:
+      utterances:
+        repo: oddish3/oddish.github.io
+        issue-term: "pathname"
+        label: "comment"
+    theme:
+      dark:  custom-dark.scss
+      light: custom-light.scss
     css: styles.css
 execute:
   freeze: auto
+

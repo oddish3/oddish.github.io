@@ -3,4 +3,11 @@ title: Software
 toc: true
 ---
 
-Work in progress
+A Work in progress.
+
+Here is a collection of software tools that I have written.
+
+### R packages
+
+- [**contdid**](https://github.com/oddish3/contdid) implementing the Differences in Differences with a continous treatment Estimator (Callaway, Goodman-Bacon & Sant'Anna, 2024).
+

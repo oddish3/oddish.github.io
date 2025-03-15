@@ -1,1 +1,33 @@
-/* css styles */
+/* Additional styling for source code areas */
+div.sourceCode {
+  background-color: var(--body-bg); /* Use body background for consistency */
+}
+
+/* Listing title style */
+.listing-title {
+  color: var(--text-color); /* Use text color variable for listing titles */
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+/* Styling for preformatted text blocks */
+pre {
+  border: 1px solid var(--text-color); /* Use text color for border */
+  padding: 5px;
+  background-color: var(--code-bg); /* Use code background color */
+  color: var(--text-color); /* Ensure text color is consistent */
+}
+
+/* Inline code styling */
+code {
+  background-color: var(--code-bg) !important; /* Use code background color */
+  color: var(--text-color); /* Ensure text color is consistent */
+}
+
+/* Inline code within paragraphs */
+.post-body > p > code {
+  background-color: var(--code-bg); /* Use code background color */
+  color: var(--text-color); /* Ensure text color is consistent */
+}
+
+

@@ -1,0 +1,58 @@
+/* custom-dark.scss */
+
+/*-- scss:defaults --*/
+// Base colors for dark theme
+$primary: #0d1117;
+$body-color: #ebebec;
+$link-color: #58a6ff;
+$code-bg: #161b22;
+$navbar-bg: #0d1117;
+$body-bg: #0d1117;
+
+/*-- scss:rules --*/
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap');
+
+// Base Layout & Typography
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $body-color;
+  background-color: $body-bg;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Schibsted Grotesk', sans-serif;
+  color: $body-color;
+}
+
+// Code Blocks & Inline Code
+pre, code {
+  font-family: 'IBM Plex Sans', monospace;
+  background-color: $code-bg;
+  color: $body-color;
+}
+
+// Links
+a {
+  color: $link-color;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Navbar
+.navbar {
+  background-color: $navbar-bg;
+}
+
+// Primary Buttons
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: $primary;
+  border-color: $primary;
+}

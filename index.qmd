@@ -20,9 +20,27 @@ about:
     #   text: Email
     #   aria-label: email
     #   href: "mailto:gmcd@amazon.com"
-
+listing:
+  contents: 
+    - posts
+    - "!posts/index.qmd"  # Exclude the blog index page
+  feed: true
+  sort: "date desc"
+  type: table
+  fields: [date, title]
+  page-size: 100
+  table-hover: true
+  table-striped: true
+  categories: true
+  sort-ui: false
+  filter-ui: true
+page-layout: full
+title-block-banner: true
+format: 
+  html:
+    comments: false
 ---
 
-I am a Research Associate at Manchester Centre for Health Economics, University of Manchester, having graduated in 2024.
+I am a Research Associate at Manchester Centre for Health Economics, University of Manchester, having graduated in 2024 with an MSc in Economics.
 
 
