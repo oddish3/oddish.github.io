@@ -1,4 +1,23 @@
 ---
-toc: true
+listing:
+  contents: 
+    - .
+  feed: true
+  sort: "date desc"
+  type: table
+  fields: [date, title]
+  page-size: 100
+  table-hover: true
+  table-striped: true
+  categories: true
+  sort-ui: false
+  filter-ui: true
+page-layout: full
+title-block-banner: true
+format: 
+  html:
+    comments: false
+citation: false
+license: ""
 ---
 

@@ -14,8 +14,8 @@ website:
         href: research/index.qmd
       - text: Teaching
         href: teaching/index.qmd  # Added Teaching section (if applicable)
-      # - text: Vita
-      #   href: https://oddish3.github.io/vita/sol-yates-vita.pdf  # Update this with your actual Vita URL
+      - text: Vita
+        href: cv/resume.pdf  # Update this with your actual Vita URL
       - text: Software
         href: software/index.qmd  # Software section (if applicable)
       - text: Blog
