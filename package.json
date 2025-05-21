@@ -1,7 +1,0 @@
-{
-  "name": "quarto-site",
-  "scripts": {
-    "build": "quarto render"
-  },
-  "devDependencies": {}
-}

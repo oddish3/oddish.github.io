@@ -1,6 +1,0 @@
-[build]
-command = "bash ./build-config.sh"
-publish = "_site"
-
-[build.environment]
-NODE_VERSION = "20"

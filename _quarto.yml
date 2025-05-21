@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  site-url: "https://oddish3.github.io"
+  site-url: "https://solyates.uk"
   title: "Sol Yates"
   open-graph: true
   search: true
