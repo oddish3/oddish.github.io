@@ -1,9 +1,7 @@
 {
   "name": "quarto-site",
   "scripts": {
-    "build": "npx quarto render"
+    "build": "quarto render"
   },
-  "devDependencies": {
-    "quarto-cli": "^1.4.550"
-  }
+  "devDependencies": {}
 }
