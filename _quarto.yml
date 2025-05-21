@@ -13,11 +13,11 @@ website:
       - text: Research
         href: research/index.qmd
       - text: Teaching
-        href: teaching/index.qmd  # Added Teaching section (if applicable)
+        href: teaching/index.qmd
       - text: Vita
-        href: cv/resume.pdf  # Update this with your actual Vita URL
+        href: cv/resume.pdf  
       - text: Software
-        href: software/index.qmd  # Software section (if applicable)
+        href: software/index.qmd
       - text: Blog
         href: posts/index.qmd
     right:

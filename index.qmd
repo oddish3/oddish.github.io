@@ -43,4 +43,12 @@ format:
 
 I am a Research Associate at Manchester Centre for Health Economics, University of Manchester, having graduated in 2024 with an MSc in Economics.
 
+My interests lie around Econometrics, Health and Health Economics.
 
+In my spare time you can find me contributing to open source projects, or exercising (see below for a combination of the both!).
+
+\
+
+<a target="_blank" href="https://statistics-for-strava.robiningelbrecht.be">
+  <img src="https://fitness.solyates.uk/files/strava-badge.svg" />
+</a>
