@@ -5,7 +5,7 @@
     firstname: "Sol",
     lastname: "Yates",
     email: "solomon.yates@manchester.ac.uk",
-    homepage: "https://oddish3.github.io/oddish.github.io/",
+    homepage: "https://solyates.uk/",
     github: "oddish3",
     orcid: "0009-0004-8754-2108",
     // birth: "January 1, 1990",
