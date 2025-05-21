@@ -1,0 +1,114 @@
+#import "@preview/modern-cv:0.8.0": *
+
+#show: resume.with(
+  author: (
+    firstname: "Sol",
+    lastname: "Yates",
+    email: "solomon.yates@manchester.ac.uk",
+    homepage: "https://oddish3.github.io/oddish.github.io/",
+    github: "oddish3",
+    orcid: "0009-0004-8754-2108",
+    // birth: "January 1, 1990",
+    // linkedin: "Example",
+    // address: "111 Example St. Example City, EX 11111",
+    positions: (
+      "Research Associate",
+      "Honorary Researcher",
+      "Research Assistant",
+    ),
+  ),
+  profile-picture: none,
+  date: datetime.today().display(),
+  language: "en",
+  colored-headers: true,
+  show-footer: false,
+  paper-size: "us-letter",
+)
+
+#let now = datetime.today()
+
+#align(right)[
+  #text(gray)[_#now.display("[month repr:long] [year]")_]
+]
+
+= Experience
+
+#resume-entry(
+  title: "Research Associate in Health Economics",
+  location: "Manchester, UK",
+  date: "Oct 2024 - Present",
+  description: "Manchester Centre for Health Economics, University of Manchester",
+  // title-link: "https://github.com/DeveloperPaul123",
+)
+
+#resume-item[
+  - Conduct health economic evaluations, including cost-effectiveness and utility analysis, using regression-based methods and decision-analytic models on key healthcare interventions.
+  - Collaborate with multidisciplinary teams to collect and analyse data for large-scale projects such as RECOLLECT, IMPRINT, and gene therapy studies, producing high-quality research output.
+  - Contribute to academic publications, presentations, and grant applications while actively supporting the development of the Manchester Centre for Health Economics. 
+  - Chair meetings and interview potential interns
+]
+
+#resume-entry(
+  title: "Honorary Researcher",
+  location: "Manchester, UK",
+  date: "Nov 2024 - Present",
+  description: "Manchester University NHS Foundation Trust",
+)
+
+#resume-item[
+  // content doesn't have to be bullet points
+  Worked in an inter-disciplinary between Academia and Healthcare
+]
+
+#resume-entry(
+  title: "Research Assistant",
+  location: "Manchester, UK",
+  date: "Aug 2023",
+  description: "Economics Department, University of Manchester",
+)
+
+#resume-item[
+  // content doesn't have to be bullet points
+  - Implemented support vector machines to predict poverty lines in Python. Performed study replication, data preprocessing, feature engineering, model training, and evaluation.
+- Collaborated with team members and independently contributed to various aspects of the project.
+]
+
+= Education
+
+#resume-entry(
+  title: "University of Manchester",
+  location: "Manchester, UK",
+  date: "Sep 2023 - Aug 2024",
+  description: "MSc in Economics",
+)
+
+#resume-item[
+   - Grade: *Distinction*
+  - *Dissertation:* Differences-in-Differences with a Continuous Treatment : New Evidence and Applications
+  - *Key Modules:* Econometric Theory, Microeconometrics, Health Economics
+]
+
+#resume-entry(
+  title: "University of Manchester",
+  location: "Manchester, UK",
+  date: "Sep 2020 - Jul 2023",
+  description: "BA in Economics",
+)
+
+#resume-item[
+  - Grade: *First Class*
+  - *Key Modules:* Econometrics and Data Science, Quantitative Methods, Microeconomics
+]
+
+
+= Skills
+
+#resume-skill-item(
+  "Languages",
+  (strong("R"), strong("Stata"), "Python", "Matlab", "C++"),
+)
+// #resume-skill-item("Spoken Languages", (strong("English"), "Spanish"))
+#resume-skill-item(
+  "Programs",
+  (strong("Excel"), strong("Github"), "Word", "Powerpoint"),
+)
