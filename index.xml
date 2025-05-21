@@ -6,20 +6,20 @@
       version="2.0">
 <channel>
 <title>Sol Yates</title>
-<link>https://oddish3.github.io/</link>
-<atom:link href="https://oddish3.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://solyates.uk/</link>
+<atom:link href="https://solyates.uk/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <image>
-<url>https://oddish3.github.io/IMG_0648.jpg</url>
+<url>https://solyates.uk/IMG_0648.jpg</url>
 <title>Sol Yates</title>
-<link>https://oddish3.github.io/</link>
+<link>https://solyates.uk/</link>
 </image>
 <generator>quarto-1.7.31</generator>
 <lastBuildDate>Sat, 15 Mar 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Example blog post</title>
   <dc:creator>Sol Yates</dc:creator>
-  <link>https://oddish3.github.io/posts/2025/03/11/example.html</link>
+  <link>https://solyates.uk/posts/2025/03/11/example.html</link>
   <description><![CDATA[ 
 
 
@@ -47,13 +47,13 @@ font-style: inherit;">1</span></span></code></pre></div>
   author = {Yates, Sol},
   title = {Example Blog Post},
   date = {2025-03-15},
-  url = {https://oddish3.github.io/posts/2025/03/11/example.html},
+  url = {https://solyates.uk/posts/2025/03/11/example.html},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-yates2025" class="csl-entry quarto-appendix-citeas">
-Yates, Sol. 2025. <span>“Example Blog Post.”</span> March 15, 2025. <a href="https://oddish3.github.io/posts/2025/03/11/example.html">https://oddish3.github.io/posts/2025/03/11/example.html</a>.
+Yates, Sol. 2025. <span>“Example Blog Post.”</span> March 15, 2025. <a href="https://solyates.uk/posts/2025/03/11/example.html">https://solyates.uk/posts/2025/03/11/example.html</a>.
 </div></div></section></div> ]]></description>
-  <guid>https://oddish3.github.io/posts/2025/03/11/example.html</guid>
+  <guid>https://solyates.uk/posts/2025/03/11/example.html</guid>
   <pubDate>Sat, 15 Mar 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
