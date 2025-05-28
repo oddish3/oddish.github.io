@@ -1,0 +1,22 @@
+Package: AcademicSite
+Title: Personal Academic Website
+Version: 0.0.1
+Authors@R: c(
+    person("Sol", "Yates", , "solyates@gmail.com", role = c("aut", "cre")),
+  )
+Depends: 
+    R (>= 3.1.0)
+Imports:
+    rmarkdown,
+    knitr,
+    tidyverse,
+    ggplot2,
+    dplyr,
+    here
+Suggests:
+    bib2df,
+    scholar,
+    RefManageR,
+    plotly,
+    leaflet
+Encoding: UTF-8
