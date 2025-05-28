@@ -6,41 +6,38 @@ on:
     branches:
       - main  # Triggers the workflow on push to the main branch
   schedule:
-    - cron: '0 0 * * 0' # Runs every Sunday at 00:00 UTC
+    - cron: '0 0 * * 0' # Runs every Sunday at 00:00 UTC (fixed spacing)
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write  # Grants permission to push to the repository
-
+      pages: write     # For GitHub Pages
+      id-token: write  # For OIDC
+    
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
+      
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
-          r-version: '4.2.0'  # Specify your R version
-
+          r-version: 'release'  # Use latest stable instead of pinned version
+          use-public-rspm: true  # Fast binary installs
+      
       - name: Install R Dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          packages:
-            any::rmarkdown
-            any::knitr
-            # Add your specific package dependencies below
-            # For example:
-            # any::tidyverse
-            # any::ggplot2
-            # any::dplyr
-            
+          cache-version: 2
+          # Automatically installs packages from DESCRIPTION file
+      
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+      
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
-          target: gh-pages  # Specifies the target branch for publishing
+          target: gh-pages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
