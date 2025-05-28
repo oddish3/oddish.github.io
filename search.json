@@ -1,24 +1,10 @@
 [
   {
-    "objectID": "research/index.html",
-    "href": "research/index.html",
-    "title": "Research",
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Sol Yates",
     "section": "",
-    "text": "Work in progress"
-  },
-  {
-    "objectID": "posts/2025/03/11/example.html",
-    "href": "posts/2025/03/11/example.html",
-    "title": "Example blog post",
-    "section": "",
-    "text": "This is some r code\n\n1 + 1\n\n[1] 2\n\n\n\n\n\nReuseCC BY 4.0CitationBibTeX citation:@online{yates2025,\n  author = {Yates, Sol},\n  title = {Example Blog Post},\n  date = {2025-03-15},\n  url = {https://solyates.uk/posts/2025/03/11/example.html},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nYates, Sol. 2025. “Example Blog Post.” March 15, 2025. https://solyates.uk/posts/2025/03/11/example.html."
-  },
-  {
-    "objectID": "teaching/index.html",
-    "href": "teaching/index.html",
-    "title": "Teaching",
-    "section": "",
-    "text": "Work in progress"
+    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 15, 2025\n\n\nExample blog post\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -28,6 +14,20 @@
     "text": "I am a Research Associate at Manchester Centre for Health Economics, University of Manchester, having graduated in 2024 with an MSc in Economics.\nMy interests lie around Econometrics, Health and Health Economics.\nIn my spare time you can find me contributing to open source projects, or exercising (see below for a combination of the both!).\n\n\n  \n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nMar 15, 2025\n\n\nExample blog post\n\n\n\n\nNo matching items"
   },
   {
+    "objectID": "research/index.html",
+    "href": "research/index.html",
+    "title": "Research",
+    "section": "",
+    "text": "Work in progress"
+  },
+  {
+    "objectID": "teaching/index.html",
+    "href": "teaching/index.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "Work in progress"
+  },
+  {
     "objectID": "software/index.html",
     "href": "software/index.html",
     "title": "Software",
@@ -35,10 +35,10 @@
     "text": "A Work in progress.\nHere is a collection of software tools that I have written.\n\nR packages\n\ncontdid implementing the Differences in Differences with a continous treatment Estimator (Callaway, Goodman-Bacon & Sant’Anna, 2024)."
   },
   {
-    "objectID": "posts/index.html",
-    "href": "posts/index.html",
-    "title": "Sol Yates",
+    "objectID": "posts/2025/03/11/example.html",
+    "href": "posts/2025/03/11/example.html",
+    "title": "Example blog post",
     "section": "",
-    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 15, 2025\n\n\nExample blog post\n\n\n\n\n\n\nNo matching items"
+    "text": "This is some r code\n\n1 + 1\n\n[1] 2\n\n\n\n\n\nReuseCC BY 4.0CitationBibTeX citation:@online{yates2025,\n  author = {Yates, Sol},\n  title = {Example Blog Post},\n  date = {2025-03-15},\n  url = {https://solyates.uk/posts/2025/03/11/example.html},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nYates, Sol. 2025. “Example Blog Post.” March 15, 2025. https://solyates.uk/posts/2025/03/11/example.html."
   }
 ]
