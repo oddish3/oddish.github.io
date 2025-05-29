@@ -46,26 +46,6 @@ jobs:
           echo "Installing Source Sans Pro..."
           wget -O source-sans-pro.tar.gz https://fonts.gstatic.com/s/sourcesanspro/v22/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2 || echo "Source Sans Pro download failed"
           
-          # Try alternative approach - clone the font repository
-          echo "Attempting to install Source Sans fonts from git..."
-          git clone --depth 1 https://github.com/adobe-fonts/source-sans-pro.git temp-source-sans || echo "Git clone failed"
-          if [ -d "temp-source-sans" ]; then
-            sudo mkdir -p /usr/share/fonts/truetype/source-fonts
-            sudo find temp-source-sans -name "*.otf" -exec cp {} /usr/share/fonts/truetype/source-fonts/ \; 2>/dev/null || echo "No OTF files found"
-            sudo find temp-source-sans -name "*.ttf" -exec cp {} /usr/share/fonts/truetype/source-fonts/ \; 2>/dev/null || echo "No TTF files found"
-            rm -rf temp-source-sans
-          fi
-          
-          # Try Source Sans 3
-          echo "Attempting to install Source Sans 3..."
-          git clone --depth 1 https://github.com/adobe-fonts/source-sans.git temp-source-sans-3 || echo "Source Sans 3 git clone failed"
-          if [ -d "temp-source-sans-3" ]; then
-            sudo mkdir -p /usr/share/fonts/truetype/source-fonts
-            sudo find temp-source-sans-3 -name "*.otf" -exec cp {} /usr/share/fonts/truetype/source-fonts/ \; 2>/dev/null || echo "No OTF files found"
-            sudo find temp-source-sans-3 -name "*.ttf" -exec cp {} /usr/share/fonts/truetype/source-fonts/ \; 2>/dev/null || echo "No TTF files found"
-            rm -rf temp-source-sans-3
-          fi
-          
           # Install additional common fonts that might serve as substitutes
           echo "Installing additional font packages..."
           sudo apt-get install -y fonts-dejavu fonts-liberation fonts-noto fonts-open-sans || echo "Additional font installation failed"
