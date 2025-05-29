@@ -46,6 +46,26 @@ jobs:
           echo "Installing Source Sans Pro..."
           wget -O source-sans-pro.tar.gz https://fonts.gstatic.com/s/sourcesanspro/v22/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2 || echo "Source Sans Pro download failed"
           
+          # Try alternative approach - clone the font repository
+          echo "Attempting to install Source Sans fonts from git..."
+          git clone --depth 1 https://github.com/adobe-fonts/source-sans-pro.git temp-source-sans || echo "Git clone failed"
+          if [ -d "temp-source-sans" ]; then
+            sudo mkdir -p /usr/share/fonts/truetype/source-fonts
+            sudo find temp-source-sans -name "*.otf" -exec cp {} /usr/share/fonts/truetype/source-fonts/ \; 2>/dev/null || echo "No OTF files found"
+            sudo find temp-source-sans -name "*.ttf" -exec cp {} /usr/share/fonts/truetype/source-fonts/ \; 2>/dev/null || echo "No TTF files found"
+            rm -rf temp-source-sans
+          fi
+          
+          # Try Source Sans 3
+          echo "Attempting to install Source Sans 3..."
+          git clone --depth 1 https://github.com/adobe-fonts/source-sans.git temp-source-sans-3 || echo "Source Sans 3 git clone failed"
+          if [ -d "temp-source-sans-3" ]; then
+            sudo mkdir -p /usr/share/fonts/truetype/source-fonts
+            sudo find temp-source-sans-3 -name "*.otf" -exec cp {} /usr/share/fonts/truetype/source-fonts/ \; 2>/dev/null || echo "No OTF files found"
+            sudo find temp-source-sans-3 -name "*.ttf" -exec cp {} /usr/share/fonts/truetype/source-fonts/ \; 2>/dev/null || echo "No TTF files found"
+            rm -rf temp-source-sans-3
+          fi
+          
           # Install additional common fonts that might serve as substitutes
           echo "Installing additional font packages..."
           sudo apt-get install -y fonts-dejavu fonts-liberation fonts-noto fonts-open-sans || echo "Additional font installation failed"
@@ -76,9 +96,31 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Check if there are any changes to commit
+          if git diff --quiet cv/resume.pdf 2>/dev/null; then
+            echo "No changes to CV, skipping commit"
+            exit 0
+          fi
+          
+          # Pull latest changes first to avoid conflicts
+          git pull --rebase origin main || echo "Pull failed, continuing anyway"
+          
+          # Add and commit changes
           git add cv/resume.pdf
           git commit -m "Automated CV update [skip ci]" || echo "No changes to commit"
-          git push
+          
+          # Push with retry logic
+          for i in {1..3}; do
+            if git push; then
+              echo "Push successful on attempt $i"
+              break
+            else
+              echo "Push failed on attempt $i, retrying..."
+              git pull --rebase origin main || echo "Rebase failed"
+              sleep 2
+            fi
+          done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
