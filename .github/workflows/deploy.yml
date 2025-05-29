@@ -34,12 +34,9 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      # Install Typst CLI
-      - name: Install Typst
-        run: |
-          curl -L https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz \
-          | tar -xJ
-          sudo mv typst /usr/local/bin
+      # Set up Typst
+      - name: Set up Typst
+        uses: typst-community/setup-typst@v4
 
       # Compile your Typst CV
       - name: Compile CV (Typst)
