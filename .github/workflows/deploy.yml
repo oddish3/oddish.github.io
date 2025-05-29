@@ -36,38 +36,11 @@ jobs:
       - name: Set up Typst
         uses: typst-community/setup-typst@v4
         
-      - name: Install required fonts
+      - name: Install Font Awesome
         run: |
-          # Update package list and install required packages
           sudo apt-get update
-          sudo apt-get install -y fonts-font-awesome fonts-roboto fonts-liberation
-          
-          # Download and install Source Sans Pro from a reliable source
-          echo "Installing Source Sans Pro..."
-          wget -O source-sans-pro.tar.gz https://fonts.gstatic.com/s/sourcesanspro/v22/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2 || echo "Source Sans Pro download failed"
-          
-          # Install additional common fonts that might serve as substitutes
-          echo "Installing additional font packages..."
-          sudo apt-get install -y fonts-dejavu fonts-liberation fonts-noto fonts-open-sans || echo "Additional font installation failed"
-          
-          # Refresh font cache
-          echo "Refreshing font cache..."
+          sudo apt-get install -y fonts-font-awesome
           sudo fc-cache -fv
-          
-          # List all available fonts for debugging
-          echo "All available fonts:"
-          fc-list | head -20
-          
-          # Check specifically for fonts that might match our needs
-          echo "Checking for font matches..."
-          echo "Font Awesome related:"
-          fc-list | grep -i "awesome\|fontawesome" || echo "No Font Awesome fonts found"
-          echo "Source Sans related:"
-          fc-list | grep -i "source" || echo "No Source fonts found"
-          echo "Roboto related:"
-          fc-list | grep -i "roboto" || echo "No Roboto fonts found"
-          echo "Liberation/DejaVu (substitutes):"
-          fc-list | grep -i "liberation\|dejavu" | head -5
         
       - name: Compile CV (Typst)
         run: typst compile cv/resume.typ
@@ -76,10 +49,31 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git pull origin main
+          
+          # Check if there are any changes to commit
+          if git diff --quiet cv/resume.pdf 2>/dev/null; then
+            echo "No changes to CV, skipping commit"
+            exit 0
+          fi
+          
+          # Pull latest changes first to avoid conflicts
+          git pull --rebase origin main || echo "Pull failed, continuing anyway"
+          
+          # Add and commit changes
           git add cv/resume.pdf
           git commit -m "Automated CV update [skip ci]" || echo "No changes to commit"
-          git push
+          
+          # Push with retry logic
+          for i in {1..3}; do
+            if git push; then
+              echo "Push successful on attempt $i"
+              break
+            else
+              echo "Push failed on attempt $i, retrying..."
+              git pull --rebase origin main || echo "Rebase failed"
+              sleep 2
+            fi
+          done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
