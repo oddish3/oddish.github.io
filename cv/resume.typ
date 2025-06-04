@@ -112,3 +112,11 @@
   "Programs",
   (strong("Excel"), strong("Github"), "Word", "Powerpoint"),
 )
+
+#pagebreak()
+
+= Publications
+
+// PUBLICATIONS_START
++ Rogers G, Landi S, Purssell H, Momoh T , #underline[Yates S] , Street S, Piper Hanley K, Hanley N, Athwal V, Payne K. Proactive case-finding and risk-stratification in people at risk of chronic liver disease in Greater Manchester: a cost-effectiveness analysis. medRχiv: https://doi.org/10.1101/2025.06.01.25328671
+// PUBLICATIONS_END
