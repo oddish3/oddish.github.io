@@ -16,10 +16,10 @@ about:
     #   href: https://scholar.google.com/citations?user=EruWDMwAAAAJ
     - text: "{{< iconify academicons orcid>}} ORCID"
       href: https://orcid.org/0009-0004-8754-2108
-    # - icon: envelope
-    #   text: Email
-    #   aria-label: email
-    #   href: "mailto:gmcd@amazon.com"
+    - icon: envelope
+      text: Email
+      aria-label: email
+      href: "mailto:contact@solyates.uk"
 listing:
   contents: 
     - posts

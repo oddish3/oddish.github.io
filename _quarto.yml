@@ -10,7 +10,7 @@ website:
     left:
       - text: Home
         href: index.qmd
-      - text: Research
+      - text: Publications
         href: research/index.qmd
       - text: Teaching
         href: teaching/index.qmd
@@ -25,7 +25,7 @@ website:
         href: https://github.com/oddish3
       - text: "{{< iconify fa6-brands:bluesky >}}"
         href: https://bsky.app/profile/oddish3.github.io
-  favicon: favicon.ico
+  favicon: favicon1.ico
   google-analytics: "UA-76482472-1"
 blog:
   # This tells Quarto where to look for blog posts:

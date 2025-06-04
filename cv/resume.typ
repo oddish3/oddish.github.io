@@ -4,7 +4,7 @@
   author: (
     firstname: "Sol",
     lastname: "Yates",
-    email: "solomon.yates@manchester.ac.uk",
+    email: "contact@solyates.uk",
     homepage: "https://solyates.uk/",
     github: "oddish3",
     orcid: "0009-0004-8754-2108",
