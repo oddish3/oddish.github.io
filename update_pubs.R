@@ -3,11 +3,16 @@ library(rcrossref)
 library(RefManageR)
 library(dplyr)
 library(stringr)
+library(jsonlite)
 
 # Configuration
 orcid_id <- "0009-0004-8754-2108"
 markdown_file <- "research/index.qmd"
 typst_file <- "cv/resume.typ"
+
+# Name configuration for underlining
+MY_NAME <- "Yates S" # Adjust this to match how your name appears
+MY_NAME_PATTERNS <- c("Yates S", "Yates, S", "S Yates", "S. Yates")
 
 # Marker configuration - customize these for your files
 MARKERS <- list(
@@ -21,7 +26,7 @@ MARKERS <- list(
   )
 )
 
-# Function to extract DOIs from the new ORCID structure
+# Function to extract DOIs from the ORCID structure
 extract_dois_from_works <- function(works_data) {
   dois <- c()
 
@@ -31,13 +36,12 @@ extract_dois_from_works <- function(works_data) {
     if (!is.null(works_info$works)) {
       works_df <- works_info$works
 
-      # Extract DOIs from external-ids.external-id column (assuming it's a character column)
+      # Extract DOIs from external-ids.external-id column
       if ("external-ids.external-id" %in% names(works_df)) {
         for (i in 1:nrow(works_df)) {
-          ext_ids <- works_df$"external-ids.external-id"[i] # CORRECTED ACCESS
+          ext_ids <- works_df$"external-ids.external-id"[i]
 
           if (!is.na(ext_ids) && length(ext_ids) > 0 && nchar(ext_ids) > 0) {
-            # Check nchar for empty strings
             ext_ids_clean <- gsub('["\']', '', ext_ids) # Remove quotes
 
             # Extract all DOI patterns
@@ -71,27 +75,20 @@ extract_dois_from_works <- function(works_data) {
 
   if (length(dois) > 0) {
     # Trim leading/trailing whitespace
-    dois <- str_trim(dois) # from stringr package
+    dois <- str_trim(dois)
 
-    # Remove common unwanted trailing characters like .,);: and ensure they are not part of the DOI core
-    # This regex will remove one or more of these characters if they are at the very end of the string.
+    # Remove common unwanted trailing characters
     dois <- sub("[\\.,\\);:]+$", "", dois)
-
-    # A more aggressive clean for a specific trailing parenthesis if the above didn't catch it
-    # e.g. if it was "DOI)" and the above removed only ")" leaving "DOI".
-    # This might be redundant if the above is effective.
-    # Example: if a DOI was captured as "10.xxxx/something)", this will clean it.
     dois <- sub("\\)$", "", dois)
 
     # Standardize to lowercase and get unique DOIs
     dois <- unique(tolower(dois))
 
-    # Filter out any NAs, empty strings, ensure it still starts with "10." (a hallmark of DOIs),
-    # and has a reasonable length.
+    # Filter out any NAs, empty strings, ensure it starts with "10."
     dois <- dois[
       !is.na(dois) &
         dois != "" &
-        grepl("^10\\.", dois) & # Check that it starts with "10."
+        grepl("^10\\.", dois) &
         nchar(dois) > 5
     ]
   }
@@ -99,23 +96,73 @@ extract_dois_from_works <- function(works_data) {
   return(dois)
 }
 
-# Function to create manual bibliography entries for preprints
-create_manual_preprint_entry <- function(doi, works_df) {
+# Function to get full metadata from Crossref
+get_crossref_metadata <- function(doi) {
+  tryCatch(
+    {
+      # Use cr_works to get full metadata
+      metadata <- cr_works(doi)
+      if (!is.null(metadata) && !is.null(metadata$data)) {
+        return(metadata$data)
+      }
+      return(NULL)
+    },
+    error = function(e) {
+      cat("Error fetching Crossref metadata for", doi, ":", e$message, "\n")
+      return(NULL)
+    }
+  )
+}
+
+# Function to extract authors from Crossref metadata
+extract_authors_from_crossref <- function(metadata) {
+  if (is.null(metadata) || !("author" %in% names(metadata))) {
+    return("Unknown Author")
+  }
+
+  authors <- metadata$author[[1]] # author is usually a list with one data frame
+
+  if (is.null(authors) || nrow(authors) == 0) return("Unknown Author")
+
+  # Extract author names
+  author_names <- c()
+  for (i in 1:nrow(authors)) {
+    given <- authors$given[i]
+    family <- authors$family[i]
+
+    if (!is.na(family)) {
+      if (!is.na(given)) {
+        # Extract first initial
+        initial <- substr(given, 1, 1)
+        author_name <- paste0(family, " ", initial)
+      } else {
+        author_name <- family
+      }
+      author_names <- c(author_names, author_name)
+    }
+  }
+
+  if (length(author_names) > 0) {
+    return(paste(author_names, collapse = ", "))
+  } else {
+    return("Unknown Author")
+  }
+}
+
+# Function to create manual preprint entries with Crossref authors
+create_manual_preprint_entry_with_authors <- function(doi, works_df) {
+  # Find the work in ORCID data
   work_row <- NULL
-  # Find the work with this DOI by checking relevant fields
   for (i in 1:nrow(works_df)) {
-    # Check in 'external-ids.external-id' if it exists and matches
     if (
       "external-ids.external-id" %in%
         names(works_df) &&
         !is.na(works_df$"external-ids.external-id"[i]) &&
         grepl(doi, works_df$"external-ids.external-id"[i], fixed = TRUE)
     ) {
-      # CORRECTED ACCESS
-      work_row <- works_df[i, , drop = FALSE] # Use drop = FALSE to keep it as a data.frame
+      work_row <- works_df[i, , drop = FALSE]
       break
     }
-    # Fallback: Check in 'url.value' if it exists and matches
     if (
       is.null(work_row) &&
         "url.value" %in% names(works_df) &&
@@ -129,51 +176,61 @@ create_manual_preprint_entry <- function(doi, works_df) {
 
   if (is.null(work_row) || nrow(work_row) == 0) return(NULL)
 
+  # Get basic info from ORCID
   title <- work_row$title.title.value
-  year <- work_row$"publication-date.year.value"[1] # Access first element
-  # month <- work_row$"publication-date.month.value"[1] # If needed
-  # day <- work_row$"publication-date.day.value"[1]   # If needed
+  year <- work_row$"publication-date.year.value"[1]
   url <- work_row$url.value[1]
 
-  # Extract authors
-  authors_str <- "Unknown Author" # Default
-  if ("contributors.contributor" %in% names(work_row)) {
-    # work_row is a single row data.frame.
-    # work_row$"contributors.contributor" is a list of length 1.
-    # The actual data.frame of contributors is work_row$"contributors.contributor"[[1]]
-    contributors_list_df <- work_row$"contributors.contributor"[[1]]
-    if (
-      !is.null(contributors_list_df) &&
-        nrow(contributors_list_df) > 0 &&
-        "credit-name.value" %in% names(contributors_list_df)
-    ) {
-      # Sort by sequence if available
-      if ("contributor-sequence" %in% names(contributors_list_df)) {
-        contributors_list_df <- contributors_list_df[
-          order(contributors_list_df$"contributor-sequence"),
-        ]
-      }
-      authors_str <- paste(contributors_list_df$"credit-name.value", collapse = ", ")
+  # Get authors from Crossref
+  cat("Fetching authors from Crossref for DOI:", doi, "\n")
+  crossref_metadata <- get_crossref_metadata(doi)
+  authors_str <- extract_authors_from_crossref(crossref_metadata)
+
+  # Determine publication venue
+  venue <- "Preprint"
+  if (!is.null(crossref_metadata) && "container-title" %in% names(crossref_metadata)) {
+    container_titles <- crossref_metadata$`container-title`[[1]]
+    if (length(container_titles) > 0 && !is.na(container_titles[1])) {
+      venue <- container_titles[1]
     }
   }
 
   entry <- list(
     title = title,
-    year = if (!is.na(year)) year else "n.d.", # CHANGED default year
-    authors = authors_str, # ADDED authors
+    year = if (!is.na(year)) year else "n.d.",
+    authors = authors_str,
     doi = doi,
     url = url,
-    note = "Preprint"
+    venue = venue
   )
 
   return(entry)
 }
 
-# Function to get bibliographic data with error handling
+# Function to underline your name
+underline_my_name <- function(text, format = "markdown") {
+  if (is.null(text) || is.na(text) || nchar(text) == 0) {
+    return(text)
+  }
+
+  result <- text
+  for (pattern in MY_NAME_PATTERNS) {
+    if (format == "markdown") {
+      result <- gsub(pattern, paste0("[", pattern, "]{.underline}"), result, fixed = TRUE)
+    } else if (format == "typst") {
+      result <- gsub(pattern, paste0("#underline[", pattern, "]"), result, fixed = TRUE)
+    }
+
+    if (result != text) break # Found and replaced
+  }
+
+  return(result)
+}
+
 # Function to get bibliographic data with error handling
 get_bib_data <- function(dois, works_df = NULL) {
   bib_list <- list()
-  failed_dois_bibtex_path <- c() # DOIs that failed the BibTeX fetching/parsing path
+  failed_dois_bibtex_path <- c()
   manual_entries <- list()
 
   cat("Fetching bibliographic data...\n")
@@ -185,26 +242,23 @@ get_bib_data <- function(dois, works_df = NULL) {
 
   for (i in seq_along(dois)) {
     doi <- dois[i]
-    bib_entry_successfully_processed_via_bibtex <- FALSE # Flag
+    bib_entry_successfully_processed_via_bibtex <- FALSE
 
     tryCatch(
       {
-        bibtex_str <- cr_cn(doi, "bibtex") # This can error (e.g. API down)
+        bibtex_str <- cr_cn(doi, "bibtex")
 
         if (!is.null(bibtex_str) && is.character(bibtex_str) && nchar(bibtex_str) > 0) {
           temp_file <- tempfile(fileext = ".bib")
           writeLines(bibtex_str, temp_file)
 
-          # ReadBib might issue warnings for malformed entries (like missing journal for @article)
-          # These warnings will print to the console.
-          current_bib_entry_list <- ReadBib(temp_file) # Returns a list of BibEntry objects
+          current_bib_entry_list <- ReadBib(temp_file)
           unlink(temp_file)
 
-          # Check if ReadBib returned at least one valid BibEntry object
           if (
             length(current_bib_entry_list) > 0 && inherits(current_bib_entry_list[[1]], "BibEntry")
           ) {
-            bib_list[[length(bib_list) + 1]] <- current_bib_entry_list # Add the list of entries (usually 1)
+            bib_list[[length(bib_list) + 1]] <- current_bib_entry_list
             bib_entry_successfully_processed_via_bibtex <- TRUE
           } else {
             cat(paste(
@@ -220,7 +274,6 @@ get_bib_data <- function(dois, works_df = NULL) {
         }
       },
       error = function(e) {
-        # This catches R errors during the tryCatch block
         cat(paste(
           "\nAn R error occurred while attempting to get/parse BibTeX for DOI:",
           doi,
@@ -228,16 +281,14 @@ get_bib_data <- function(dois, works_df = NULL) {
           e$message,
           "\n"
         ))
-        # bib_entry_successfully_processed_via_bibtex remains FALSE
       }
-    ) # End of tryCatch
+    )
 
-    # After attempting BibTeX path (either success, failure, or R error):
+    # If BibTeX failed, create manual entry with Crossref authors
     if (!bib_entry_successfully_processed_via_bibtex) {
-      failed_dois_bibtex_path <- c(failed_dois_bibtex_path, doi) # Log failure of BibTeX path
+      failed_dois_bibtex_path <- c(failed_dois_bibtex_path, doi)
 
       # Check if it's a preprint and attempt manual creation
-      # Be specific with preprint DOI patterns
       is_preprint_doi <- (!is.null(works_df) &&
         (grepl("^10\\.1101/", doi) || # bioRxiv/medRxiv
           grepl("^10\\.20944/", doi) || # Preprints.org
@@ -245,34 +296,48 @@ get_bib_data <- function(dois, works_df = NULL) {
           grepl("osf\\.io", doi, ignore.case = TRUE) ||
           grepl("researchsquare", doi, ignore.case = TRUE) ||
           grepl("chemrxiv", doi, ignore.case = TRUE)))
-      # Add other known preprint server DOI patterns or URL fragments if needed
 
       if (is_preprint_doi) {
         cat(paste(
-          "--> BibTeX processing failed or incomplete for DOI:",
+          "--> BibTeX processing failed for DOI:",
           doi,
-          ". Attempting manual entry as it appears to be a preprint.\n"
+          ". Creating manual entry with Crossref authors.\n"
         ))
-        browser()
-        manual_entry <- create_manual_preprint_entry(doi, works_df) # works_df is passed from main call
+        manual_entry <- create_manual_preprint_entry_with_authors(doi, works_df)
         if (!is.null(manual_entry)) {
           manual_entries[[length(manual_entries) + 1]] <- manual_entry
-          cat(paste("----> Successfully created manual entry for preprint DOI:", doi, "\n"))
+          cat(paste(
+            "----> Successfully created manual entry with authors:",
+            substr(manual_entry$authors, 1, 50),
+            "...\n"
+          ))
         } else {
-          cat(paste("----> Failed to create manual entry for preprint DOI:", doi, "\n"))
+          cat(paste("----> Failed to create manual entry for DOI:", doi, "\n"))
         }
       } else {
+        # For non-preprints, still try to create manual entry
         cat(paste(
           "--> BibTeX processing failed for DOI:",
           doi,
-          ", and it was not identified as a preprint for manual fallback.\n"
+          ". Attempting manual entry creation.\n"
         ))
+        manual_entry <- create_manual_preprint_entry_with_authors(doi, works_df)
+        if (!is.null(manual_entry)) {
+          manual_entries[[length(manual_entries) + 1]] <- manual_entry
+          cat(paste(
+            "----> Successfully created manual entry with authors:",
+            substr(manual_entry$authors, 1, 50),
+            "...\n"
+          ))
+        } else {
+          cat(paste("----> Failed to create manual entry for DOI:", doi, "\n"))
+        }
       }
     }
 
     setTxtProgressBar(pb, i)
     Sys.sleep(0.2) # Be nice to the API
-  } # End of for loop
+  }
 
   close(pb)
 
@@ -280,9 +345,8 @@ get_bib_data <- function(dois, works_df = NULL) {
     cat(paste(
       "\nEncountered issues (failed BibTeX fetch/parse) for",
       length(failed_dois_bibtex_path),
-      "DOIs via Crossref. Fallback to manual creation was attempted for preprints among these.\n"
+      "DOIs via Crossref. Manual creation attempted for these.\n"
     ))
-    # You can print failed_dois_bibtex_path if needed for debugging
   }
 
   return(list(
@@ -295,7 +359,6 @@ get_bib_data <- function(dois, works_df = NULL) {
 format_apa_references <- function(bib_data_list) {
   formatted_refs <- c()
 
-  # bib_data_list is expected to be the list from get_bib_data
   bib_db <- bib_data_list$bib_entries
   manual_entries_list <- bib_data_list$manual_entries
 
@@ -307,13 +370,13 @@ format_apa_references <- function(bib_data_list) {
       entry <- bib_db[[i]]
 
       authors <- if (!is.null(entry$author)) {
-        # Basic author formatting. For true APA, more complex logic or CSL is needed.
+        # Basic author formatting
         sapply(entry$author, function(p) {
           fam <- paste(p$family, collapse = " ")
           giv <- paste(substr(p$given, 1, 1), ".", sep = "", collapse = "")
           paste0(fam, ", ", giv) # Produces "Lastname, F."
         }) |>
-          paste(collapse = ", ") # Simplified, no "&" or et al. logic
+          paste(collapse = ", ")
       } else "Unknown Author"
 
       year <- if (!is.null(entry$year)) entry$year else "n.d."
@@ -346,14 +409,11 @@ format_apa_references <- function(bib_data_list) {
     }
   }
 
-  # Format manual entries (e.g., preprints)
+  # Format manual entries with full author lists
   if (!is.null(manual_entries_list) && length(manual_entries_list) > 0) {
-    # Consider sorting manual entries by year and author if desired
-    # For simplicity, adding them as they are for now.
     for (entry in manual_entries_list) {
-      # Use authors extracted by create_manual_preprint_entry
       authors_display <- if (!is.null(entry$authors)) entry$authors else "Unknown Author"
-      ref <- paste0(authors_display, " (", entry$year, "). ", entry$title, ". *", entry$note, "*.") # Use note for type
+      ref <- paste0(authors_display, " (", entry$year, "). ", entry$title, ". *", entry$venue, "*.")
 
       if (!is.null(entry$doi) && nzchar(entry$doi)) {
         ref <- paste0(ref, " https://doi.org/", entry$doi)
@@ -364,14 +424,10 @@ format_apa_references <- function(bib_data_list) {
     }
   }
 
-  # Optional: Sort all formatted_refs together if a unified sorted list is desired
-  # This would require parsing year/author from the formatted strings, or doing it before formatting.
-  # For now, Crossref entries are sorted, then manual entries are appended.
-
   return(formatted_refs)
 }
 
-# Function to insert content between markers (only for existing files)
+# Function to insert content between markers
 insert_between_markers <- function(
   file_path,
   new_content,
@@ -381,7 +437,6 @@ insert_between_markers <- function(
 ) {
   if (!file.exists(file_path)) {
     cat("ERROR: File does not exist:", file_path, "\n")
-    # ... (rest of the original error message)
     return(FALSE)
   }
 
@@ -397,7 +452,8 @@ insert_between_markers <- function(
   end_pos <- which(grepl(end_marker, lines, fixed = TRUE))
 
   if (length(start_pos) == 0 || length(end_pos) == 0) {
-    # ... (rest of the original error message)
+    cat("ERROR: Could not find both start and end markers in", file_path, "\n")
+    cat("Looking for:", start_marker, "and", end_marker, "\n")
     return(FALSE)
   }
 
@@ -425,13 +481,29 @@ insert_between_markers <- function(
 
 # Function to generate markdown bibliography content
 generate_markdown_content <- function(formatted_refs) {
-  content <- c(
-    # paste0("*Generated on ", Sys.Date(), " from ORCID ID: ", orcid_id, "*"),
-    ""
-  )
+  content <- c("")
   if (length(formatted_refs) > 0) {
     for (i in seq_along(formatted_refs)) {
-      content <- c(content, paste0(i, ". ", formatted_refs[i]), "")
+      ref_with_underline <- underline_my_name(formatted_refs[i], "markdown")
+
+      # transform bare DOIs to full links
+      ref_with_underline <- gsub(
+        "(?<!https://doi\\.org/)(10\\.\\d{4,9}/[-._;()/:A-Z0-9]+)",
+        "https://doi.org/\\1",
+        ref_with_underline,
+        ignore.case = TRUE,
+        perl = TRUE
+      )
+
+      # wrap full DOI links in markdown
+      ref_with_underline <- gsub(
+        "(https://doi\\.org/10\\.\\d{4,9}/[-._;()/:A-Z0-9]+)",
+        "[\\1](\\1)",
+        ref_with_underline,
+        ignore.case = TRUE
+      )
+
+      content <- c(content, paste0(i, ". ", ref_with_underline), "")
     }
   } else {
     content <- c(content, "No publications found or processed.")
@@ -441,14 +513,11 @@ generate_markdown_content <- function(formatted_refs) {
 
 # Function to generate typst bibliography content
 generate_typst_content <- function(formatted_refs) {
-  content <- c(
-    # paste0("_Generated on ", Sys.Date(), " from ORCID ID: ", orcid_id, "_"),
-    ""
-  )
+  content <- c("")
   if (length(formatted_refs) > 0) {
     for (i in seq_along(formatted_refs)) {
-      ref_clean <- gsub("\\*([^*]+)\\*", "#emph[$1]", formatted_refs[i])
-      content <- c(content, paste0("+ ", ref_clean))
+      ref_with_underline <- underline_my_name(formatted_refs[i], "typst")
+      content <- c(content, paste0("+ ", ref_with_underline))
     }
   } else {
     content <- c(content, "No publications found or processed.")
@@ -538,9 +607,9 @@ if (length(dois) == 0) {
   cat(paste(
     "\nRetrieved",
     num_bib_entries,
-    "entries via Crossref and created",
+    "entries via Crossref BibTeX and created",
     num_manual_entries,
-    "manual entries.\n"
+    "manual entries with Crossref authors.\n"
   ))
 
   if (total_processed_entries == 0) {
@@ -548,7 +617,6 @@ if (length(dois) == 0) {
   }
 
   cat("\nFormatting references in APA style...\n")
-  # Note: The APA formatting is basic. For full APA compliance, a CSL engine is recommended.
   formatted_refs <- format_apa_references(bib_data_list)
 
   if (length(formatted_refs) > 0) {
@@ -576,12 +644,11 @@ if (length(dois) == 0) {
   cat("\n=== Summary ===\n")
   cat("ORCID ID:", orcid_id, "\n")
   cat("DOIs initially extracted:", length(dois), "\n")
-  cat("Crossref entries processed:", num_bib_entries, "\n")
-  cat("Manual entries created:", num_manual_entries, "\n")
+  cat("Crossref BibTeX entries processed:", num_bib_entries, "\n")
+  cat("Manual entries with Crossref authors created:", num_manual_entries, "\n")
   cat("Total references formatted:", length(formatted_refs), "\n")
   cat("\nFiles processed:\n")
   if (markdown_exists) cat("✓ ", markdown_file, "\n")
   if (typst_exists) cat("✓ ", typst_file, "\n")
-  cat("\nBackups created for updated files (if any).\n")
-  cat("Done!\n")
+  cat("\nDone!\n")
 }

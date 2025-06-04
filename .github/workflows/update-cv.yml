@@ -1,0 +1,55 @@
+name: Monthly CV Update
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'  # Runs at 00:00 UTC on the 1st of each month
+  workflow_dispatch:
+
+jobs:
+  update-cv:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Install Font Awesome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-font-awesome
+          sudo fc-cache -fv
+
+      - name: Compile CV (Typst)
+        run: typst compile cv/resume.typ
+
+      - name: Commit updated CV
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet cv/resume.pdf 2>/dev/null; then
+            echo "No changes to CV, skipping commit"
+            exit 0
+          fi
+
+          git pull --rebase origin main || echo "Pull failed, continuing anyway"
+          git add cv/resume.pdf
+          git commit -m "Automated CV update [skip ci]" || echo "No changes to commit"
+
+          for i in {1..3}; do
+            if git push; then
+              echo "Push successful on attempt $i"
+              break
+            else
+              echo "Push failed on attempt $i, retrying..."
+              git pull --rebase origin main || echo "Rebase failed"
+              sleep 2
+            fi
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
