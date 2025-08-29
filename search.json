@@ -1,17 +1,10 @@
 [
   {
-    "objectID": "posts/index.html",
-    "href": "posts/index.html",
-    "title": "Sol Yates",
+    "objectID": "teaching/index.html",
+    "href": "teaching/index.html",
+    "title": "Teaching",
     "section": "",
-    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 15, 2025\n\n\nExample blog post\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "research/index.html",
-    "href": "research/index.html",
-    "title": "Publications",
-    "section": "",
-    "text": "Rogers G, Landi S, Purssell H, Momoh T, Yates S, Street O, Piper Hanley K, Hanley N, Athwal V, Payne K (2025). Proactive case-finding and risk-stratification in people at risk of chronic liver disease in Greater Manchester: a cost-effectiveness analysis. Preprint. https://doi.org/10.1101/2025.06.01.25328671"
+    "text": "POPH60092 Economic Evaluation in Healthcare 2024-25 2nd Semester, Teaching Assistant to Gemma Shields."
   },
   {
     "objectID": "index.html",
@@ -21,11 +14,25 @@
     "text": "I am a Research Associate at Manchester Centre for Health Economics, University of Manchester, having graduated in 2024 with an MSc in Economics.\nMy interests lie around Econometrics, Health and Health Economics.\nIn my spare time you can find me contributing to open source projects, or exercising (see below for a combination of the both!).\n\n\n  \n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nMar 15, 2025\n\n\nExample blog post\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "teaching/index.html",
-    "href": "teaching/index.html",
-    "title": "Teaching",
+    "objectID": "posts/2025/03/11/example.html",
+    "href": "posts/2025/03/11/example.html",
+    "title": "Example blog post",
     "section": "",
-    "text": "POPH60092 Economic Evaluation in Healthcare 2024-25 2nd Semester, Teaching Assistant to Gemma Shields."
+    "text": "This is some r code\n\n1 + 1\n\n[1] 2\n\n\n\n\n\nReuseCC BY 4.0CitationBibTeX citation:@online{yates2025,\n  author = {Yates, Sol},\n  title = {Example Blog Post},\n  date = {2025-03-15},\n  url = {https://solyates.uk/posts/2025/03/11/example.html},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nYates, Sol. 2025. “Example Blog Post.” March 15, 2025. https://solyates.uk/posts/2025/03/11/example.html."
+  },
+  {
+    "objectID": "research/index.html",
+    "href": "research/index.html",
+    "title": "Publications",
+    "section": "",
+    "text": "Rogers G, Landi S, Purssell H, Momoh T, Yates S, Street O, Piper Hanley K, Hanley N, Athwal V, Payne K (2025). Proactive case-finding and risk-stratification in people at risk of chronic liver disease in Greater Manchester: a cost-effectiveness analysis. Preprint. https://doi.org/10.1101/2025.06.01.25328671"
+  },
+  {
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Sol Yates",
+    "section": "",
+    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 15, 2025\n\n\nExample blog post\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "software/index.html",
@@ -33,12 +40,5 @@
     "title": "Software",
     "section": "",
     "text": "A Work in progress.\nHere is a collection of software tools that I have written.\n\nR packages\n\ncontdid implementing the Differences in Differences with a continous treatment Estimator (Callaway, Goodman-Bacon & Sant’Anna, 2024)."
-  },
-  {
-    "objectID": "posts/2025/03/11/example.html",
-    "href": "posts/2025/03/11/example.html",
-    "title": "Example blog post",
-    "section": "",
-    "text": "This is some r code\n\n1 + 1\n\n[1] 2\n\n\n\n\n\nReuseCC BY 4.0CitationBibTeX citation:@online{yates2025,\n  author = {Yates, Sol},\n  title = {Example Blog Post},\n  date = {2025-03-15},\n  url = {https://solyates.uk/posts/2025/03/11/example.html},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nYates, Sol. 2025. “Example Blog Post.” March 15, 2025. https://solyates.uk/posts/2025/03/11/example.html."
   }
 ]
