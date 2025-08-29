@@ -46,7 +46,7 @@
   - Collaborate with multidisciplinary teams to collect and analyse data for large-scale projects such as RECOLLECT, IMPRINT, and gene therapy studies, producing high-quality research output.
   - Contribute to academic publications, presentations, and grant applications while actively supporting the development of the Manchester Centre for Health Economics. 
   - Chair meetings and interview potential interns
-]
+  - Accredited Researcher (ONS, 2025–2030) – authorised to access secure microdata under the Digital Economy Act 2017 for research in the public interest]
 
 #resume-entry(
   title: "Honorary Researcher",
