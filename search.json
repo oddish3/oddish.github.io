@@ -7,6 +7,20 @@
     "text": "POPH60092 Economic Evaluation in Healthcare 2024-25 2nd Semester, Teaching Assistant to Gemma Shields."
   },
   {
+    "objectID": "software/index.html",
+    "href": "software/index.html",
+    "title": "Software",
+    "section": "",
+    "text": "A Work in progress.\nHere is a collection of software tools that I have written.\n\nR packages\n\ncontdid implementing the Differences in Differences with a continous treatment Estimator (Callaway, Goodman-Bacon & Sant’Anna, 2024)."
+  },
+  {
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Sol Yates",
+    "section": "",
+    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 15, 2025\n\n\nExample blog post\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Sol Yates",
@@ -26,19 +40,5 @@
     "title": "Publications",
     "section": "",
     "text": "Rogers G, Landi S, Purssell H, Momoh T, Yates S, Street O, Piper Hanley K, Hanley N, Athwal V, Payne K (2025). Proactive case-finding and risk-stratification in people at risk of chronic liver disease in Greater Manchester: a cost-effectiveness analysis. Preprint. https://doi.org/10.1101/2025.06.01.25328671"
-  },
-  {
-    "objectID": "posts/index.html",
-    "href": "posts/index.html",
-    "title": "Sol Yates",
-    "section": "",
-    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 15, 2025\n\n\nExample blog post\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "software/index.html",
-    "href": "software/index.html",
-    "title": "Software",
-    "section": "",
-    "text": "A Work in progress.\nHere is a collection of software tools that I have written.\n\nR packages\n\ncontdid implementing the Differences in Differences with a continous treatment Estimator (Callaway, Goodman-Bacon & Sant’Anna, 2024)."
   }
 ]
