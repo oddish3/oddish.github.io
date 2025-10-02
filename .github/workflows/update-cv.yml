@@ -2,7 +2,8 @@ name: Monthly CV Update
 
 on:
   schedule:
-    - cron: '0 0 1 * *'  # Runs at 00:00 UTC on the 1st of each month
+    - cron: '0 0 1 * *'        # Runs at 00:00 UTC on the 1st of each month
+    - cron: '15 14 2 10 *'     # Extra run on 2 Oct at 15:15 BST (14:15 UTC)
   workflow_dispatch:
 
 jobs:
@@ -14,6 +15,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Typst
         uses: typst-community/setup-typst@v4
@@ -42,7 +46,7 @@ jobs:
           git commit -m "Automated CV update [skip ci]" || echo "No changes to commit"
 
           for i in {1..3}; do
-            if git push; then
+            if git push origin HEAD:main; then
               echo "Push successful on attempt $i"
               break
             else

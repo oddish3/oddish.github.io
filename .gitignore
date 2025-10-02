@@ -31,3 +31,5 @@ vendor/
 /.vscode/
 *.html
 .httr-oauth
+
+**/*.quarto_ipynb
