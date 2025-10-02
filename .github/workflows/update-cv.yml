@@ -3,7 +3,6 @@ name: Monthly CV Update
 on:
   schedule:
     - cron: '0 0 1 * *'        # Runs at 00:00 UTC on the 1st of each month
-    - cron: '15 14 2 10 *'     # Extra run on 2 Oct at 15:15 BST (14:15 UTC)
   workflow_dispatch:
 
 jobs:
