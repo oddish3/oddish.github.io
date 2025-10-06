@@ -1,7 +1,7 @@
 name: Monthly CV Update
 on:
   schedule:
-    - cron: '0 0 1 * *'        # Runs at 00:00 UTC on the 1st of each month
+    - cron: '0 0 1 * *'
   workflow_dispatch:
 jobs:
   update-cv:
@@ -38,6 +38,8 @@ jobs:
       
       - name: Refresh publications
         run: Rscript update_pubs.R
+        env:
+          ORCID_TOKEN: ${{ secrets.ORCID_TOKEN }}
       
       - name: Set up Typst
         uses: typst-community/setup-typst@v4
