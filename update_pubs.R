@@ -10,6 +10,16 @@ orcid_id <- "0009-0004-8754-2108"
 markdown_file <- "research/index.qmd"
 typst_file <- "cv/resume.typ"
 
+ORCID_TOKEN <- Sys.getenv("ORCID_TOKEN")
+if (ORCID_TOKEN == "" || is.na(ORCID_TOKEN)) {
+  stop(
+    "ORCID_TOKEN environment variable is not set. Please set it in your ~/.Renviron file or Fish config."
+  )
+}
+
+Sys.setenv(ORCID_TOKEN = ORCID_TOKEN) # Ensure it's set in the session
+options(orcid_token = ORCID_TOKEN) # Set it for rorcid package
+
 # Name configuration for underlining
 MY_NAME <- "Yates S" # Adjust this to match how your name appears
 MY_NAME_PATTERNS <- c("Yates S", "Yates, S", "S Yates", "S. Yates")
@@ -122,7 +132,9 @@ extract_authors_from_crossref <- function(metadata) {
 
   authors <- metadata$author[[1]] # author is usually a list with one data frame
 
-  if (is.null(authors) || nrow(authors) == 0) return("Unknown Author")
+  if (is.null(authors) || nrow(authors) == 0) {
+    return("Unknown Author")
+  }
 
   # Extract author names
   author_names <- c()
@@ -174,7 +186,9 @@ create_manual_preprint_entry_with_authors <- function(doi, works_df) {
     }
   }
 
-  if (is.null(work_row) || nrow(work_row) == 0) return(NULL)
+  if (is.null(work_row) || nrow(work_row) == 0) {
+    return(NULL)
+  }
 
   # Get basic info from ORCID
   title <- work_row$title.title.value
@@ -377,7 +391,9 @@ format_apa_references <- function(bib_data_list) {
           paste0(fam, ", ", giv) # Produces "Lastname, F."
         }) |>
           paste(collapse = ", ")
-      } else "Unknown Author"
+      } else {
+        "Unknown Author"
+      }
 
       year <- if (!is.null(entry$year)) entry$year else "n.d."
       title <- if (!is.null(entry$title)) entry$title else "Untitled"
@@ -541,19 +557,72 @@ if (!markdown_exists && !typst_exists) {
     " exist. Please create these files first, including the necessary start/end markers."
   )
 }
-if (!markdown_exists) cat("WARNING: ", markdown_file, " does not exist and will be skipped.\n")
-if (!typst_exists) cat("WARNING: ", typst_file, " does not exist and will be skipped.\n")
+if (!markdown_exists) {
+  cat("WARNING: ", markdown_file, " does not exist and will be skipped.\n")
+}
+if (!typst_exists) {
+  cat("WARNING: ", typst_file, " does not exist and will be skipped.\n")
+}
 
 cat("\nFetching works from ORCID...\n")
 works_data <- tryCatch(
   {
-    orcid_works(orcid_id)
+    library(httr)
+    response <- GET(
+      paste0("https://pub.orcid.org/v3.0/", orcid_id, "/works"),
+      add_headers(
+        Authorization = paste("Bearer", ORCID_TOKEN),
+        Accept = "application/json"
+      )
+    )
+
+    if (status_code(response) == 200) {
+      content_data <- content(response, as = "parsed")
+
+      # Restructure to match rorcid format
+      # The API returns groups of works, we need to extract them
+      works_list <- list()
+      if (!is.null(content_data$group)) {
+        for (group in content_data$group) {
+          if (!is.null(group$`work-summary`) && length(group$`work-summary`) > 0) {
+            works_list <- c(works_list, list(group$`work-summary`[[1]]))
+          }
+        }
+      }
+
+      # Create a data frame similar to rorcid structure
+      works_df <- do.call(
+        rbind,
+        lapply(works_list, function(work) {
+          data.frame(
+            title.title.value = work$title$title$value %||% NA,
+            `publication-date.year.value` = work$`publication-date`$year$value %||% NA,
+            `external-ids.external-id` = paste(
+              sapply(work$`external-ids`$`external-id`, function(id) {
+                paste0(id$`external-id-type`, ":", id$`external-id-value`)
+              }),
+              collapse = ", "
+            ),
+            url.value = work$url$value %||% NA,
+            stringsAsFactors = FALSE,
+            check.names = FALSE
+          )
+        })
+      )
+
+      list(list(works = works_df))
+    } else {
+      stop("API returned status: ", status_code(response))
+    }
   },
   error = function(e) {
     cat("Error fetching works from ORCID:", e$message, "\n")
     return(NULL)
   }
 )
+
+# Helper function for NULL coalescing
+`%||%` <- function(a, b) if (is.null(a)) b else a
 
 if (
   is.null(works_data) ||
@@ -598,10 +667,16 @@ if (length(dois) == 0) {
 } else {
   bib_data_list <- get_bib_data(dois, works_data[[1]]$works) # works_df for manual entries
 
-  num_bib_entries <- if (!is.null(bib_data_list$bib_entries)) length(bib_data_list$bib_entries) else
+  num_bib_entries <- if (!is.null(bib_data_list$bib_entries)) {
+    length(bib_data_list$bib_entries)
+  } else {
     0
-  num_manual_entries <- if (!is.null(bib_data_list$manual_entries))
-    length(bib_data_list$manual_entries) else 0
+  }
+  num_manual_entries <- if (!is.null(bib_data_list$manual_entries)) {
+    length(bib_data_list$manual_entries)
+  } else {
+    0
+  }
   total_processed_entries <- num_bib_entries + num_manual_entries
 
   cat(paste(
@@ -648,7 +723,11 @@ if (length(dois) == 0) {
   cat("Manual entries with Crossref authors created:", num_manual_entries, "\n")
   cat("Total references formatted:", length(formatted_refs), "\n")
   cat("\nFiles processed:\n")
-  if (markdown_exists) cat("✓ ", markdown_file, "\n")
-  if (typst_exists) cat("✓ ", typst_file, "\n")
+  if (markdown_exists) {
+    cat("✓ ", markdown_file, "\n")
+  }
+  if (typst_exists) {
+    cat("✓ ", typst_file, "\n")
+  }
   cat("\nDone!\n")
 }
