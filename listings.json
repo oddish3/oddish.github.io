@@ -1,14 +1,10 @@
 [
   {
-    "listing": "/posts/index.html",
-    "items": [
-      "/posts/2025/03/11/example.html"
-    ]
+    "listing": "/index.html",
+    "items": []
   },
   {
-    "listing": "/index.html",
-    "items": [
-      "/posts/2025/03/11/example.html"
-    ]
+    "listing": "/posts/index.html",
+    "items": []
   }
 ]
