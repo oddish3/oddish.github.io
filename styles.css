@@ -30,4 +30,20 @@ code {
   color: var(--text-color); /* Ensure text color is consistent */
 }
 
+/* About page profile image */
+.about-entity .about-image {
+  width: 600px;  /* Adjust size */
+  height: auto;
+  border-radius: 50%;  /* Optional: keep it circular */
+}
 
+/* Or target it more specifically for solana template */
+.about-entity img {
+  max-width: 250px;  /* Your preferred size */
+}
+
+/* Resize the Strava badge */
+/* .strava-badge { */
+/*   width: 600px; */
+/*   height: auto; */
+/* } */
