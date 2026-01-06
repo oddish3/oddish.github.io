@@ -1,0 +1,11 @@
+---
+title: "About Me"
+---
+
+I am a Research Associate in Health Economics at the Manchester Centre for Health Economics, University of Manchester. I also hold an honorary researcher position at the Manchester University NHS Foundation Trust.
+
+My research interests include econometrics and health economics. I have experience in conducting health economic evaluations, including cost-effectiveness and utility analysis, using regression-based methods and decision-analytic models on key healthcare interventions.
+
+I hold an MSc in Economics (Distinction) and a BA in Economics (First Class), both from the University of Manchester.
+
+<!-- This page is a great place to add more details about your background, your research, and your interests. You could also add a professional photo. -->

@@ -16,6 +16,8 @@ about:
     #   href: https://scholar.google.com/citations?user=EruWDMwAAAAJ
     - text: "{{< iconify academicons orcid>}} ORCID"
       href: https://orcid.org/0009-0004-8754-2108
+    - text: "{{< iconify academicons researchgate>}} Researchgate"
+      href: https://www.researchgate.net/profile/Sol-Yates-2
     - icon: envelope
       text: Email
       aria-label: email

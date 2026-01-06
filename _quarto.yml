@@ -10,21 +10,30 @@ website:
     left:
       - text: Home
         href: index.qmd
-      - text: Publications
+      - text: About
+        href: about.qmd
+      - text: Research
         href: research/index.qmd
       - text: Teaching
         href: teaching/index.qmd
-      - text: Vita
-        href: cv/resume.pdf  
       - text: Software
         href: software/index.qmd
       - text: Blog
         href: posts/index.qmd
+      - text: Vita
+        href: cv/index.qmd
     right:
       - icon: github
         href: https://github.com/oddish3
       - text: "{{< iconify fa6-brands:bluesky >}}"
         href: https://bsky.app/profile/oddish3.github.io
+      - text: "{{< iconify academicons:orcid >}}"
+        href: https://orcid.org/0009-0004-8754-2108
+      - icon: linkedin
+        href: https://uk.linkedin.com/in/sol-yates-20a7961a1
+      - text: "{{< iconify academicons researchgate>}}"
+        href: https://www.researchgate.net/profile/Sol-Yates-2
+
   favicon: favicon1.ico
   google-analytics: "UA-76482472-1"
 blog:

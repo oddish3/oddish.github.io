@@ -1,4 +1,4 @@
-#import "@preview/modern-cv:0.8.0": *
+#import "@preview/modern-cv:0.9.0": *
 
 #show: resume.with(
   author: (
@@ -110,7 +110,7 @@
 // #resume-skill-item("Spoken Languages", (strong("English"), "Spanish"))
 #resume-skill-item(
   "Programs",
-  (strong("Excel"), strong("Github"), "Word", "Powerpoint"),
+  (strong("Excel"), strong("Github")),
 )
 
 #pagebreak()
@@ -121,3 +121,30 @@
 
 + Rogers G, Landi S, Purssell H, Momoh T, #underline[Yates S], Street O, Hanley K, Hanley N, Athwal V, Payne K (2025). Proactive case-finding and risk-stratification in people at risk of chronic liver disease in Greater Manchester: a cost-effectiveness analysis. *Preprint*. https://doi.org/10.1101/2025.06.01.25328671
 // PUBLICATIONS_END
+
+\
+= Research in Progress
+
+#resume-item[
+  - *EYEGEN:* Mortality-adjusted prevalence estimation using a single national testing centre, with partial national coverage.
+]
+#resume-item[
+  - *Equity RCT:* Health economic analysis of a cluster randomised trial of a mental health training intervention.
+]
+#resume-item[
+  - *Rheum4U:* A longitudinal fixed-effects model of a strictly decreasing polynomial relationship in disease registry data for Rheumatoid Arthritis.
+]
+#resume-item[
+  - *IMATCH Scoping Review* of benefit measures for increasing the output of clinical trials.
+]
+#resume-item[
+  - *ID-Liver WP2:* Further Developing the Evidence on the early diagnosis of Liver Disease.
+]
+#resume-item[
+  - *EYEGENE:* A position piece on the challenges of modelling eye disease and building a Markov model.
+]
+#resume-item[
+  - *Breast Cancer Medicine NMA:* A network meta-analysis for risk-reducing breast cancer medicines.
+]
+
+

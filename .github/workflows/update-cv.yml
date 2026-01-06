@@ -55,24 +55,27 @@ jobs:
       
       - name: Commit updated CV
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- cv/resume.pdf cv/resume.typ research/index.qmd 2>/dev/null; then
-            echo "No changes to CV, skipping commit"
-            exit 0
-          fi
-          git pull --rebase origin main || echo "Pull failed, continuing anyway"
-          git add cv/resume.pdf cv/resume.typ research/index.qmd
-          git commit -m "Automated CV update [skip ci]" || echo "No changes to commit"
-          for i in {1..3}; do
-            if git push origin HEAD:main; then
-              echo "Push successful on attempt $i"
-              break
-            else
-              echo "Push failed on attempt $i, retrying..."
-              git pull --rebase origin main || echo "Rebase failed"
-              sleep 2
-            fi
-          done
+  git config --global user.name "github-actions[bot]"
+  git config --global user.email "github-actions[bot]@users.noreply.github.com"
+  if git diff --quiet -- cv/resume.pdf cv/resume.typ research/index.qmd 2>/dev/null; then
+    echo "No changes to CV, skipping commit"
+    exit 0
+  fi
+  git pull --rebase origin main
+  git add cv/resume.pdf cv/resume.typ research/index.qmd
+  git commit -m "Automated CV update [skip ci]"
+  for i in {1..3}; do
+    if git push origin HEAD:main; then
+      echo "Push successful on attempt $i"
+      break
+    elif [ $i -lt 3 ]; then
+      echo "Push failed on attempt $i, retrying..."
+      git pull --rebase origin main
+      sleep 5
+    else
+      echo "Push failed after 3 attempts."
+      exit 1
+    fi
+  done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
