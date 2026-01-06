@@ -33,3 +33,4 @@ vendor/
 .httr-oauth
 
 **/*.quarto_ipynb
+*.bak
