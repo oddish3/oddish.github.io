@@ -6,9 +6,15 @@ on:
       - main
   workflow_dispatch:
 
+# Prevent concurrent deployments
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
 jobs:
   deploy-website:
     runs-on: ubuntu-latest
+    timeout-minutes: 20  # Prevent hanging jobs
     permissions:
       contents: write
       pages: write
