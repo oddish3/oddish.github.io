@@ -64,7 +64,7 @@ GitHub automatically **disables scheduled workflows** (like the Monthly CV Updat
 
 When a repository is inactive for 60 days, GitHub assumes the project is dormant and disables all scheduled workflows to save resources. You'll receive an email notification when this occurs:
 
-> "The 'Monthly CV Update' workflow in oddish3/oddish.github.io has been disabled"
+> "The 'Monthly CV Update' workflow in username/repository has been disabled"
 
 ### How to Prevent Auto-Disable
 
@@ -73,7 +73,7 @@ You have several options:
 1. **Manual Trigger (Recommended)**:
    - Visit: Actions → Monthly CV Update → Run workflow
    - This counts as repository activity and resets the 60-day timer
-   - Run this every ~2 months if you're not actively committing
+   - Run this every ~50 days (just over 7 weeks) if you're not actively committing to provide a safety margin
 
 2. **Make Regular Commits**:
    - Any commit to the repository resets the timer
