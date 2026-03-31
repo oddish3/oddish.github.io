@@ -38,15 +38,20 @@
   location: "Manchester, UK",
   date: "Oct 2024 - Present",
   description: "Manchester Centre for Health Economics, University of Manchester",
-  // title-link: "https://github.com/DeveloperPaul123",
+  title-link: "https://github.com/oddish3",
 )
 
 #resume-item[
-  - Conduct health economic evaluations, including cost-effectiveness and utility analysis, using regression-based methods and decision-analytic models on key healthcare interventions.
-  - Collaborate with multidisciplinary teams to collect and analyse data for large-scale projects such as RECOLLECT, IMPRINT, and gene therapy studies, producing high-quality research output.
-  - Contribute to academic publications, presentations, and grant applications while actively supporting the development of the Manchester Centre for Health Economics. 
-  - Chair meetings and interview potential interns
-  - Accredited Researcher (ONS, 2025–2030) – authorised to access secure microdata under the Digital Economy Act 2017 for research in the public interest]
+  - Conducted trial-based economic evaluations for #link("https://sites.manchester.ac.uk/equity/")[
+  #strong("EQUITy WP4")
+]
+  - Experience conducting **regression-based analyses** on large-scale healthcare datasets #link("https://cumming.ucalgary.ca/departments/medicine/division/rheumatology/rheum4u/about")[(#strong("Rheum4U"))]
+  // - Collaborate with multidisciplinary teams to collect and analyse data for large-scale projects such as RECOLLECT, IMPRINT, and gene therapy studies, producing high-quality research output.
+  - Experience drafting peer-reviewed manuscripts
+  - Contributed to academic publications, presentations, and grant applications while actively supporting the development of the Manchester Centre for Health Economics. 
+  - Provided technical guidance and **informal R training** to academic colleagues
+  - Manage administrative leadership duties, including **chairing meetings** and supervising/interviewing research interns
+  - Accredited Researcher (ONS, 2025–2030): authorised to access secure microdata under the Digital Economy Act 2017 for research in the public interest]
 
 #resume-entry(
   title: "Honorary Researcher",
@@ -57,7 +62,7 @@
 
 #resume-item[
   // content doesn't have to be bullet points
-  Worked in an inter-disciplinary between Academia and Healthcare
+  - Experience collaborating with clinicians and multidisciplinary teams to collect primary care data for genetic testing study (EYEGEN)
 ]
 
 #resume-entry(
@@ -126,25 +131,29 @@
 = Research in Progress
 
 #resume-item[
-  - *EYEGEN:* Mortality-adjusted prevalence estimation using a single national testing centre, with partial national coverage.
+  - *EYEGEN:* Mortality-adjusted XLRP prevalence estimation using a single national testing centre. 
 ]
 #resume-item[
   - *Equity RCT:* Health economic analysis of a cluster randomised trial of a mental health training intervention.
 ]
 #resume-item[
-  - *Rheum4U:* A longitudinal fixed-effects model of a strictly decreasing polynomial relationship in disease registry data for Rheumatoid Arthritis.
+  - *Rheum4U:* A longitudinal study of the Presenteeism-Health status relationship in Rheumatoid Arthritis disease registry.
 ]
 #resume-item[
   - *IMATCH Scoping Review* of benefit measures for increasing the output of clinical trials.
 ]
 #resume-item[
+  - *ID-Liver WP1:* Built a **multistate model** to estimate disease progression using patient-level data in ARLD.
+]
+
+#resume-item[
   - *ID-Liver WP2:* Further Developing the Evidence on the early diagnosis of Liver Disease.
 ]
 #resume-item[
-  - *EYEGENE:* A position piece on the challenges of modelling eye disease and building a Markov model.
+  - *EYEGENE:* Cost effectiveness of a hypothetical RPGR-XLRP therapy under a test–treat framework.
 ]
 #resume-item[
-  - *Breast Cancer Medicine NMA:* A network meta-analysis for risk-reducing breast cancer medicines.
+  - *Breast Cancer Medicine NMA:* Systematic review and **network meta-analysis** of medicines that reduce the risk of breast cancer.
 ]
 
 
