@@ -124,6 +124,7 @@
 
 // PUBLICATIONS_START
 
++ Unknown Author (2026). Patterns of X-linked Retinitis Pigmentosa Genetic Testing in England and Implications for Service Provision. *Preprint*. https://doi.org/10.1016/j.xop
 + Rogers G, Landi S, Purssell H, Momoh T, #underline[Yates S], Street O, Hanley K, Hanley N, Athwal V, Payne K (2025). Proactive case-finding and risk-stratification in people at risk of chronic liver disease in Greater Manchester: a cost-effectiveness analysis. *Preprint*. https://doi.org/10.1101/2025.06.01.25328671
 // PUBLICATIONS_END
 
