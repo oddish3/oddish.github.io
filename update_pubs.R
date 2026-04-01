@@ -57,7 +57,7 @@ extract_dois_from_works <- function(works_data) {
             # Extract all DOI patterns
             doi_matches <- regmatches(
               ext_ids_clean,
-              gregexpr("10\\.[0-9]+/[^,\\s]+", ext_ids_clean)
+              gregexpr("10\\.\\d{4,9}/[-._;()/:A-Z0-9]+", ext_ids_clean, ignore.case = TRUE)
             )[[1]]
             if (length(doi_matches) > 0) {
               doi_matches <- gsub("[,\\s]*$", "", doi_matches) # Clean up any trailing characters

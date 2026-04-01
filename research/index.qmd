@@ -5,7 +5,7 @@ toc: true
 
 <!-- PUBLICATIONS_START -->
 
-1. Unknown Author (2026). Patterns of X-linked Retinitis Pigmentosa Genetic Testing in England and Implications for Service Provision. *Preprint*. [https://doi.org/10.1016/j.xop](https://doi.org/10.1016/j.xop)
+1. [Yates, S]{.underline}., Whittaker, W., Harrison, M., Bayliss, S., Barton, S., Sergouniotis, P.I., Payne, K., Black, G. (2026). Patterns of X-linked Retinitis Pigmentosa Genetic Testing in England and Implications for Service Provision. *Ophthalmology Science*, 101180. [https://doi.org/10.1016/j.xops.2026.101180](https://doi.org/10.1016/j.xops.2026.101180)
 
 2. Rogers G, Landi S, Purssell H, Momoh T, [Yates S]{.underline}, Street O, Hanley K, Hanley N, Athwal V, Payne K (2025). Proactive case-finding and risk-stratification in people at risk of chronic liver disease in Greater Manchester: a cost-effectiveness analysis. *Preprint*. [https://doi.org/10.1101/2025.06.01.25328671](https://doi.org/10.1101/2025.06.01.25328671)
 
