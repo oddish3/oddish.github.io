@@ -1,6 +1,7 @@
 project:
   type: website
-
+  resources:
+    - vita/
 website:
   site-url: "https://solyates.uk"
   title: "Sol Yates"
