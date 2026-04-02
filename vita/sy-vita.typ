@@ -105,6 +105,19 @@
   - *Key Modules:* Econometrics and Data Science, Quantitative Methods, Microeconomics
 ]
 
+= Teaching
+
+#resume-entry(
+  title: "Teaching Assistant",
+  location: "Manchester, UK",
+  date: "2024–2026",
+  description: "POPH60092 Economic Evaluation in Healthcare, University of Manchester",
+)
+
+#resume-item[
+  - Assisted with discussion boards and assessment preparation
+  - Module leads: Gemma Shields (2024–25), Sean Gavan (2025–26)
+]
 
 = Skills
 

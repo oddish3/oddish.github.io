@@ -4,6 +4,8 @@ image: IMG_0648.jpg
 about:
   template: solana #jolla trestles
   links:
+    - text: "University Profile"
+      href: https://research.manchester.ac.uk/en/persons/sol-yates/
     - text: "{{< iconify fa6-brands:bluesky >}} BlueSky"
       href: https://bsky.app/profile/oddish3.github.io
     - icon: github
@@ -12,8 +14,8 @@ about:
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/sol-yates-20a7961a1
-    # - text: "{{< iconify academicons google-scholar >}} Scholar"
-    #   href: https://scholar.google.com/citations?user=EruWDMwAAAAJ
+    - text: "{{< iconify academicons google-scholar >}} Scholar"
+      href: https://scholar.google.com/citations?hl=en&user=Tw-nwuYAAAAJ
     - text: "{{< iconify academicons orcid>}} ORCID"
       href: https://orcid.org/0009-0004-8754-2108
     - text: "{{< iconify academicons researchgate>}} Researchgate"

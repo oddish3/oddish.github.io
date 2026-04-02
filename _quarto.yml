@@ -21,7 +21,7 @@ website:
       - text: Blog
         href: posts/index.qmd
       - text: Vita
-        href: cv/index.qmd
+        href: https://solyates.uk/vita/sy-vita.pdf
     right:
       - icon: github
         href: https://github.com/oddish3

@@ -8,7 +8,7 @@ library(jsonlite)
 # Configuration
 orcid_id <- "0009-0004-8754-2108"
 markdown_file <- "research/index.qmd"
-typst_file <- "cv/resume.typ"
+typst_file <- "vita/sy-vita.typ"
 
 ORCID_TOKEN <- Sys.getenv("ORCID_TOKEN")
 if (ORCID_TOKEN == "" || is.na(ORCID_TOKEN)) {
