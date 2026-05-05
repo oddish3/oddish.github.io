@@ -9,16 +9,19 @@ This directory contains automated workflows for maintaining the website and CV.
 **Purpose**: Automatically builds and deploys the Quarto website to GitHub Pages.
 
 **Triggers**:
+
 - Push to `main` branch
 - Manual trigger via workflow_dispatch
 
 **What it does**:
+
 1. Sets up R environment and dependencies
 2. Installs Quarto
 3. Renders the website
 4. Publishes to gh-pages branch
 
 **Best Practices Implemented**:
+
 - Concurrency control prevents simultaneous deployments
 - 20-minute timeout prevents hanging jobs
 - Can be manually triggered if needed
@@ -30,17 +33,20 @@ This directory contains automated workflows for maintaining the website and CV.
 **Purpose**: Automatically updates CV with latest publications from ORCID.
 
 **Triggers**:
+
 - Scheduled: 1st day of every month at midnight UTC
 - Manual trigger via workflow_dispatch (important - see below!)
 
 **What it does**:
+
 1. Fetches latest publications from ORCID
 2. Updates `research/index.qmd` with publication list
-3. Updates `cv/resume.typ` with publications
+3. Updates `vita/sy-vita.typ` with publications
 4. Compiles the CV to PDF using Typst
 5. Commits and pushes changes back to repository
 
 **Best Practices Implemented**:
+
 - Concurrency control prevents overlapping update runs
 - 30-minute timeout prevents hanging jobs
 - Error handling for missing ORCID_TOKEN
@@ -48,6 +54,7 @@ This directory contains automated workflows for maintaining the website and CV.
 - Uses `[skip ci]` to prevent trigger loops
 
 **Requirements**:
+
 - `ORCID_TOKEN` must be set in repository secrets
 
 ---
@@ -57,6 +64,7 @@ This directory contains automated workflows for maintaining the website and CV.
 ⚠️ **CRITICAL INFORMATION ABOUT SCHEDULED WORKFLOWS**
 
 GitHub automatically **disables scheduled workflows** (like the Monthly CV Update) if:
+
 - There is **no repository activity for 60 days**
 - This includes no commits, no pull requests, no issues, etc.
 
@@ -126,6 +134,7 @@ Both workflows can be manually triggered:
 5. Click "**Run workflow**" button
 
 This is useful for:
+
 - Testing changes to workflows
 - Forcing an update outside the schedule
 - Re-running after fixing an error
@@ -138,6 +147,7 @@ This is useful for:
 ### Workflow Fails with "ORCID_TOKEN secret is not set"
 
 **Solution**: Add the ORCID_TOKEN secret:
+
 1. Go to Settings → Secrets and variables → Actions
 2. Click "New repository secret"
 3. Name: `ORCID_TOKEN`
@@ -155,6 +165,7 @@ This is useful for:
 **Cause**: Concurrent workflow runs or external commits
 
 **Solution**: The workflow includes retry logic. If it persists:
+
 1. Check for concurrent workflow runs
 2. Manually pull latest changes
 3. Re-run the workflow
@@ -162,11 +173,13 @@ This is useful for:
 ### Publications Not Updating
 
 **Possible causes**:
+
 1. ORCID profile not updated
 2. DOIs not in ORCID record
 3. Crossref API issues
 
 **Debug**:
+
 1. Check workflow logs in Actions tab
 2. Verify publications are in your ORCID profile
 3. Ensure DOIs are correct format
@@ -189,7 +202,7 @@ To change the CV update frequency, edit the cron expression in `update-cv.yml`:
 
 ```yaml
 schedule:
-  - cron: '0 0 1 * *'  # Current: Monthly on the 1st
+  - cron: "0 0 1 * *" # Current: Monthly on the 1st
   # Examples:
   # - cron: '0 0 * * 0'  # Weekly on Sunday
   # - cron: '0 0 1 */3 *'  # Quarterly (every 3 months)

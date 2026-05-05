@@ -65,18 +65,18 @@ jobs:
           sudo fc-cache -fv
       
       - name: Compile CV (Typst)
-        run: typst compile cv/resume.typ
+        run: typst compile vita/sy-vita.typ
       
       - name: Commit updated CV
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- cv/resume.pdf cv/resume.typ research/index.qmd 2>/dev/null \
-             && ! git ls-files --others --exclude-standard -- cv/resume.pdf | grep -q .; then
+          if git diff --quiet -- vita/sy-vita.pdf vita/sy-vita.typ research/index.qmd 2>/dev/null \
+             && ! git ls-files --others --exclude-standard -- vita/sy-vita.pdf | grep -q .; then
             echo "No changes to CV, skipping commit"
             exit 0
           fi
-          git add cv/resume.pdf cv/resume.typ research/index.qmd
+          git add vita/sy-vita.typ vita/sy-vita.pdf research/index.qmd
           git commit -m "Automated CV update [skip ci]"
           for i in {1..3}; do
             if git push origin HEAD:main; then
