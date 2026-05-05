@@ -1,4 +1,4 @@
-#import "@preview/modern-cv:0.9.0": *
+#import "@preview/modern-cv:0.10.0": *
 
 #show: resume.with(
   author: (
@@ -45,12 +45,12 @@
   - Conducted trial-based economic evaluations for #link("https://sites.manchester.ac.uk/equity/")[
   #strong("EQUITy WP4")
 ]
-  - Experience conducting **regression-based analyses** on large-scale healthcare datasets #link("https://cumming.ucalgary.ca/departments/medicine/division/rheumatology/rheum4u/about")[(#strong("Rheum4U"))]
+  - Experience conducting *regression-based analyses* on large-scale healthcare datasets #link("https://cumming.ucalgary.ca/departments/medicine/division/rheumatology/rheum4u/about")[(#strong("Rheum4U"))]
   // - Collaborate with multidisciplinary teams to collect and analyse data for large-scale projects such as RECOLLECT, IMPRINT, and gene therapy studies, producing high-quality research output.
   - Experience drafting peer-reviewed manuscripts
   - Contributed to academic publications, presentations, and grant applications while actively supporting the development of the Manchester Centre for Health Economics. 
-  - Provided technical guidance and **informal R training** to academic colleagues
-  - Manage administrative leadership duties, including **chairing meetings** and supervising/interviewing research interns
+  - Provided technical guidance and *informal R training* to academic colleagues
+  - Manage administrative leadership duties, including *chairing meetings* and supervising/interviewing research interns
   - Accredited Researcher (ONS, 2025–2030): authorised to access secure microdata under the Digital Economy Act 2017 for research in the public interest]
 
 #resume-entry(
@@ -157,7 +157,7 @@
   - *IMATCH Scoping Review* of benefit measures for increasing the output of clinical trials.
 ]
 #resume-item[
-  - *ID-Liver WP1:* Built a **multistate model** to estimate disease progression using patient-level data in ARLD.
+  - *ID-Liver WP1:* Built a *multistate model* to estimate disease progression using patient-level data in ARLD.
 ]
 
 #resume-item[
@@ -167,7 +167,9 @@
   - *EYEGENE:* Cost effectiveness of a hypothetical RPGR-XLRP therapy under a test–treat framework.
 ]
 #resume-item[
-  - *Breast Cancer Medicine NMA:* Systematic review and **network meta-analysis** of medicines that reduce the risk of breast cancer.
+  - *Breast Cancer Medicine NMA:* Systematic review and *network meta-analysis* of medicines that reduce the risk of breast cancer.
 ]
 
+= Outside of work
 
+I enjoy time with family and friends, good coffee, food, cooking, music, and movies, as well as the outdoors and travelling.
