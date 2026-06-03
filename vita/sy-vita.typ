@@ -8,9 +8,6 @@
     homepage: "https://solyates.uk/",
     github: "oddish3",
     orcid: "0009-0004-8754-2108",
-    // birth: "January 1, 1990",
-    // linkedin: "Example",
-    // address: "111 Example St. Example City, EX 11111",
     positions: (
       "Research Associate",
       "Honorary Researcher",
@@ -42,15 +39,13 @@
 )
 
 #resume-item[
-  - Conducted a trial-based economic evaluation for #link("https://sites.manchester.ac.uk/equity/")[
-  #strong("EQUITy WP4")
-]
-  - Conducting *regression-based analyses* on large-scale healthcare datasets #link("https://cumming.ucalgary.ca/departments/medicine/division/rheumatology/rheum4u/about")[(#strong("Rheum4U"))]
-  // - Collaborate with multidisciplinary teams to collect and analyse data for large-scale projects such as RECOLLECT, IMPRINT, and gene therapy studies, producing high-quality research output.
-  - Experience taking a project from plan to publication as a first-author #link("https://doi-org.manchester.idm.oclc.org/10.1016/j.xops.2026.101180")[(#strong("EYEGEN"))]
+  - Conducted a trial-based economic evaluation for #link("https://sites.manchester.ac.uk/equity/")[#strong("EQUITy WP4")]
+  - Led regression-based analyses on large-scale rheumatology registry data #link("https://cumming.ucalgary.ca/departments/medicine/division/rheumatology/rheum4u/about")[(#strong("Rheum4U"))]
+  - Led a project from inception to first-author publication in a peer-reviewed journal #link("https://doi.org/10.1016/j.xops.2026.101180")[(#strong("EYEGEN"))]
   - Provided technical guidance and *informal R training* to academic colleagues
-  - Manage administrative leadership duties, including *chairing meetings* and supervising/interviewing research interns
-  - Accredited Researcher (ONS, 2025–2030): authorised to access secure microdata under the Digital Economy Act 2017 for research in the public interest]
+  - Chaired meetings and supervised research interns, including conducting interviews
+  - *Accredited Researcher (ONS, 2025–2030):* authorised to access secure microdata under the Digital Economy Act 2017
+]
 
 #resume-entry(
   title: "Honorary Researcher",
@@ -60,8 +55,7 @@
 )
 
 #resume-item[
-  // content doesn't have to be bullet points
-  - Experience collaborating with clinicians and multidisciplinary teams to collect primary care data for genetic testing study (EYEGEN)
+  - NHS governance credential enabling collection of primary care genetic testing data in collaboration with clinicians and geneticists (#strong("EYEGEN"))
 ]
 
 #resume-entry(
@@ -72,9 +66,7 @@
 )
 
 #resume-item[
-  // content doesn't have to be bullet points
-  - Implemented support vector machines to predict poverty lines in Python. Performed study replication, data preprocessing, feature engineering, model training, and evaluation.
-- Collaborated with team members and independently contributed to various aspects of the project.
+  - Implemented support vector machines in Python to predict poverty lines; covered data preprocessing, feature engineering, model training, and evaluation.
 ]
 
 = Education
@@ -87,8 +79,8 @@
 )
 
 #resume-item[
-   - Grade: *Distinction*
-  - *Dissertation:* Differences-in-Differences with a Continuous Treatment : New Evidence and Applications
+  - Grade: *Distinction*
+  - *Dissertation:* Differences-in-Differences with a Continuous Treatment: New Evidence and Applications
   - *Key Modules:* Econometric Theory, Microeconometrics, Health Economics
 ]
 
@@ -114,20 +106,23 @@
 )
 
 #resume-item[
-  - Assisted with discussion boards and assessment preparation
-  - Module leads: Gemma Shields (2024–25), Sean Gavan (2025–26)
+  - Supported postgraduate teaching in cost-effectiveness analysis and health technology assessment methods
+  - Responsibilities included facilitating discussion boards and contributing to assessment preparation
 ]
 
 = Skills
 
 #resume-skill-item(
+  "Statistical Methods",
+  ("Cost-effectiveness analysis", "Multistate models", "Panel econometrics", "Network meta-analysis", "Difference-in-differences"),
+)
+#resume-skill-item(
   "Languages",
   (strong("R"), strong("Stata"), "Python", "Matlab", "C++"),
 )
-// #resume-skill-item("Spoken Languages", (strong("English"), "Spanish"))
 #resume-skill-item(
-  "Programs",
-  (strong("Excel"), strong("Github")),
+  "Tools",
+  (strong("R: tidyverse"), "Quarto", "Git", "Excel"),
 )
 
 #pagebreak()
@@ -138,35 +133,21 @@
 
 + #underline[Yates, S]., Whittaker, W., Harrison, M., Bayliss, S., Barton, S., Sergouniotis, P.I., Payne, K., Black, G. (2026). Patterns of X-Linked Retinitis Pigmentosa Genetic Testing in England and Implications for Service Provision. *Ophthalmology Science*, 6(6), 101180. https://doi.org/10.1016/j.xops.2026.101180
 + Rogers G, Landi S, Purssell H, Momoh T, #underline[Yates S], Street O, Hanley K, Hanley N, Athwal V, Payne K (2025). Proactive case-finding and risk-stratification in people at risk of chronic liver disease in Greater Manchester: a cost-effectiveness analysis. *Preprint*. https://doi.org/10.1101/2025.06.01.25328671
+
 // PUBLICATIONS_END
 
 \
 = Research in Progress
 
 #resume-item[
-  - *EYEGEN:* Mortality-adjusted XLRP prevalence estimation using a single national testing centre. 
-]
-#resume-item[
-  - *Equity RCT:* Health economic analysis of a cluster randomised trial of a mental health training intervention.
-]
-#resume-item[
-  - *Rheum4U:* A longitudinal study of the Presenteeism-Health status relationship in Rheumatoid Arthritis disease registry.
-]
-#resume-item[
-  - *IMATCH Scoping Review* of benefit measures for increasing the output of clinical trials.
-]
-#resume-item[
-  - *ID-Liver WP1:* Built a *multistate model* to estimate disease progression using patient-level data in ARLD.
-]
-
-#resume-item[
-  - *ID-Liver WP2:* Further Developing the Evidence on the early diagnosis of Liver Disease.
-]
-#resume-item[
-  - *EYEGENE:* Cost effectiveness of a hypothetical RPGR-XLRP therapy under a test–treat framework.
-]
-#resume-item[
-  - *Breast Cancer Medicine NMA:* Systematic review and *network meta-analysis* of medicines that reduce the risk of breast cancer.
+  - *EYEGENE:* Cost effectiveness of a hypothetical RPGR-XLRP gene therapy.
+  - *EQUITy:* Health economic analysis of a cluster randomised trial of a mental health training intervention.
+  - *Rheum4U:* A longitudinal study of the presenteeism–health status relationship in a rheumatoid arthritis disease registry.
+  - *IMATCH:* A scoping review of benefit measures for increasing the output of clinical trials.
+  // - *ID-Liver WP1:* Multistate model of disease progression using patient-level data in alcohol-related liver disease.
+  // - *ID-Liver WP2:* Evidence synthesis on early diagnosis of liver disease.
+  - *Breast Cancer:* A NMA of medicines that reduce breast cancer risk.
+  - *Pharmacy First:* An Economic evaluation of the Pharmacy First programme.
 ]
 
 = Outside of work
