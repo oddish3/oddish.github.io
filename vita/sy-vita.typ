@@ -41,7 +41,7 @@
 #resume-item[
   - Conducted a trial-based economic evaluation for #link("https://sites.manchester.ac.uk/equity/")[#strong("EQUITy WP4")]
   - Led regression-based analyses on large-scale rheumatology registry data #link("https://cumming.ucalgary.ca/departments/medicine/division/rheumatology/rheum4u/about")[(#strong("Rheum4U"))]
-  - Led a project from inception to first-author publication in a peer-reviewed journal #link("https://doi.org/10.1016/j.xops.2026.101180")[(#strong("EYEGEN"))]
+  - Executed all analyses and wrote the manuscript; published as first author #link("https://doi.org/10.1016/j.xops.2026.101180")[(#strong("EYEGEN"))]
   - Provided technical guidance and *informal R training* to academic colleagues
   - Chaired meetings and supervised research interns, including conducting interviews
   - *Accredited Researcher (ONS, 2025–2030):* authorised to access secure microdata under the Digital Economy Act 2017
