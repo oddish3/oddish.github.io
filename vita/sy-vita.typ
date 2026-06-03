@@ -42,13 +42,12 @@
 )
 
 #resume-item[
-  - Conducted trial-based economic evaluations for #link("https://sites.manchester.ac.uk/equity/")[
+  - Conducted a trial-based economic evaluation for #link("https://sites.manchester.ac.uk/equity/")[
   #strong("EQUITy WP4")
 ]
-  - Experience conducting *regression-based analyses* on large-scale healthcare datasets #link("https://cumming.ucalgary.ca/departments/medicine/division/rheumatology/rheum4u/about")[(#strong("Rheum4U"))]
+  - Conducting *regression-based analyses* on large-scale healthcare datasets #link("https://cumming.ucalgary.ca/departments/medicine/division/rheumatology/rheum4u/about")[(#strong("Rheum4U"))]
   // - Collaborate with multidisciplinary teams to collect and analyse data for large-scale projects such as RECOLLECT, IMPRINT, and gene therapy studies, producing high-quality research output.
-  - Experience drafting peer-reviewed manuscripts
-  - Contributed to academic publications, presentations, and grant applications while actively supporting the development of the Manchester Centre for Health Economics. 
+  - Experience taking a project from plan to publication as a first-author #link("https://doi-org.manchester.idm.oclc.org/10.1016/j.xops.2026.101180")[(#strong("EYEGEN"))]
   - Provided technical guidance and *informal R training* to academic colleagues
   - Manage administrative leadership duties, including *chairing meetings* and supervising/interviewing research interns
   - Accredited Researcher (ONS, 2025–2030): authorised to access secure microdata under the Digital Economy Act 2017 for research in the public interest]
