@@ -8,14 +8,6 @@ Depends:
     R (>= 3.1.0)
 Imports:
     rmarkdown,
-    knitr,
-    tidyverse,
-    ggplot2,
-    dplyr,
-    here
+    knitr
 Suggests:
-    bib2df,
-    scholar,
-    RefManageR,
-    plotly
 Encoding: UTF-8
