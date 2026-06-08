@@ -14,7 +14,7 @@ concurrency:
 jobs:
   deploy-website:
     runs-on: ubuntu-latest
-    timeout-minutes: 20  # Prevent hanging jobs
+    timeout-minutes: 45
     permissions:
       contents: write
       pages: write

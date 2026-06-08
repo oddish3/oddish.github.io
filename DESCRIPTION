@@ -17,6 +17,5 @@ Suggests:
     bib2df,
     scholar,
     RefManageR,
-    plotly,
-    leaflet
+    plotly
 Encoding: UTF-8
